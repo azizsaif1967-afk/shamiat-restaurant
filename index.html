@@ -102,8 +102,8 @@
 
   /* HERO */
   section.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:170px 0 80px;overflow:hidden}
-  .hero::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(110deg,rgba(14,11,8,.97) 0%,rgba(14,11,8,.82) 40%,rgba(14,11,8,.5) 100%),radial-gradient(circle at 80% 30%,rgba(217,168,108,.18),transparent 55%),url('images/1000316072.jpg') center/cover}
-  .hero-grid{position:relative;z-index:1;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(14,11,8,.96) 0%,rgba(14,11,8,.78) 42%,rgba(14,11,8,.45) 100%),radial-gradient(circle at 80% 30%,rgba(217,168,108,.16),transparent 55%)}
+  .hero-grid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
   @media(max-width:1023px){.hero-grid{grid-template-columns:1fr}}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
   .eyebrow::before{content:"";width:30px;height:2px;background:var(--gold)}
@@ -322,12 +322,82 @@
 
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
   .reveal.in{opacity:1;transform:none}
+
+  /* ===== ADDED: intro splash, hero slideshow, bigger logo, stars, social rail, chatbot ===== */
+  /* intro logo splash */
+  #intro{position:fixed;inset:0;z-index:200;background:radial-gradient(circle at 50% 42%,#1d160f,#0E0B08 70%);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
+  #intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+  #intro img{width:min(62vw,460px);opacity:0;transform:scale(.9);animation:introIn 1.4s cubic-bezier(.16,1,.3,1) forwards}
+  #intro::after{content:"";position:absolute;width:min(70vw,540px);height:1px;bottom:36%;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);animation:introLine 1.4s .3s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes introIn{to{opacity:1;transform:scale(1)}}
+  @keyframes introLine{to{transform:scaleX(1)}}
+  html.introlock,body.introlock{overflow:hidden}
+
+  /* hero cinematic slideshow (rotates the real kitchen photos) */
+  .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;display:block;cursor:pointer}
+  .hslide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;will-change:opacity,transform}
+  .hslide.on{opacity:1;animation:heroKen 9s ease-out forwards}
+  @keyframes heroKen{from{transform:scale(1.03)}to{transform:scale(1.16)}}
+  .hero::after{pointer-events:none}
+  .hero-grid{pointer-events:none}
+  .hero-grid a,.hero-grid button,.hero-card,.hero-card *{pointer-events:auto}
+  .hero-tapcue{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;font-family:var(--label);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-2);pointer-events:none;opacity:.75}
+
+  /* bigger landing logo (~3x), shrinks on scroll */
+  nav.rest .brand .brand-img{height:96px}
+  nav.rest.shr .brand .brand-img{height:48px}
+  @media(max-width:600px){nav.rest .brand .brand-img{height:60px}nav.rest.shr .brand .brand-img{height:42px}}
+
+  /* Signature badge -> five gold stars (no black box) */
+  .badge.stars{background:none;border:none;color:#F2C879;letter-spacing:2px;font-size:.74rem;text-shadow:0 1px 5px rgba(0,0,0,.95);padding:2px 0;top:7px;left:11px}
+
+  /* floating social rail */
+  .social-rail{position:fixed;left:18px;bottom:18px;z-index:65;display:flex;flex-direction:column;gap:11px}
+  .social-rail a{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s}
+  .social-rail a:hover{transform:translateY(-3px) scale(1.07);box-shadow:0 10px 26px rgba(0,0,0,.55)}
+  .social-rail svg{width:23px;height:23px;fill:#fff}
+  .sr-wa{background:#25d366}
+  .sr-ig{background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)}
+  .sr-fb{background:#1877F2}
+  .sr-tt{background:#010101}
+  @media(max-width:600px){.social-rail{gap:9px;left:12px;bottom:12px}.social-rail a{width:42px;height:42px}.social-rail svg{width:21px;height:21px}}
+
+  /* smart chatbot */
+  .cbot-btn{position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;background:var(--gold);color:var(--ink);border:none;cursor:pointer;box-shadow:0 12px 32px rgba(217,168,108,.45);display:flex;align-items:center;justify-content:center;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+  .cbot-btn:hover{transform:scale(1.08)}
+  .cbot-btn svg{width:30px;height:30px;fill:var(--ink)}
+  .cbot-btn .pulse{position:absolute;top:1px;right:1px;width:14px;height:14px;border-radius:50%;background:var(--terra);border:2px solid var(--gold)}
+  .cbot-panel{position:fixed;right:20px;bottom:92px;z-index:71;width:min(384px,calc(100vw - 28px));height:min(564px,calc(100vh - 130px));background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.65);display:flex;flex-direction:column;overflow:hidden;transform:translateY(18px) scale(.96);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .3s}
+  .cbot-panel.open{transform:none;opacity:1;pointer-events:auto}
+  .cbot-head{display:flex;align-items:center;gap:11px;padding:13px 15px;background:linear-gradient(120deg,#2A2118,#1A1510);border-bottom:1px solid var(--line)}
+  .cbot-head .av{width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.15rem}
+  .cbot-head .ht{font-family:var(--display);font-weight:700;color:#fff;font-size:1.02rem;line-height:1.1}
+  .cbot-head .hs{font-family:var(--label);font-size:.6rem;letter-spacing:.08em;color:var(--good);text-transform:uppercase;display:flex;align-items:center;gap:5px;margin-top:3px}
+  .cbot-head .hs i{width:6px;height:6px;border-radius:50%;background:var(--good);display:inline-block}
+  .cbot-head .x{margin-left:auto;background:none;border:none;color:var(--silver-2);font-size:1.6rem;cursor:pointer;line-height:1;padding:0 4px}
+  .cbot-msgs{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:9px}
+  .cbot-msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.875rem;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
+  .cbot-msg.bot{background:var(--panel-2);color:#eee;align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line-2)}
+  .cbot-msg.user{background:var(--gold);color:var(--ink);align-self:flex-end;border-bottom-right-radius:4px;font-weight:500}
+  .cbot-msg a{color:var(--gold-l)}
+  .cbot-msg.user a{color:var(--ink)}
+  .cbot-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 11px}
+  .cbot-chip{font-family:var(--label);font-size:.75rem;border:1px solid var(--line);color:var(--gold-l);background:rgba(217,168,108,.08);padding:7px 11px;border-radius:99px;cursor:pointer;transition:background .2s}
+  .cbot-chip:hover{background:rgba(217,168,108,.18)}
+  .cbot-form{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line-2);background:var(--panel)}
+  .cbot-form input{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:99px;padding:10px 15px;color:#fff;font-family:inherit;font-size:.88rem;outline:none}
+  .cbot-form input:focus{border-color:var(--gold)}
+  .cbot-form button{background:var(--gold);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .cbot-form button svg{width:18px;height:18px;fill:var(--ink)}
+  @media(max-width:600px){.cbot-panel{right:12px;left:12px;width:auto}}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://shamiatrestaurant.com/"},{"@type":"ListItem","position":2,"name":"Shamiat Restaurant","item":"https://shamiatrestaurant.com/"}]}
 </script>
 </head>
 <body>
+<div id="intro"><img src="images/shamiat-logo.png" alt="Shamiat Restaurant"></div>
 <div id="prog"></div>
 <div class="grain"></div>
 
@@ -352,6 +422,12 @@
 <main>
 <!-- HERO -->
 <section class="hero" id="top">
+    <a class="hero-bg" href="#menu" aria-label="View the menu — jump to the dishes">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-poster.jpg">
+      <source src="images/hero-dishes.mp4" type="video/mp4">
+    </video>
+  </a>
+  <span class="hero-tapcue" aria-hidden="true">Tap to explore the menu ↓</span>
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow">Authentic Syrian &amp; Levantine Kitchen</div>
@@ -472,7 +548,7 @@
     <div class="menu-cat reveal" id="grill">
       <div class="cat-bar"><h3>From the Charcoal Grill</h3><span class="ar">على الفحم</span><span class="ct">Mangal · made to order</span></div>
       <div class="dish-grid">
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-lamb-chops.jpg" alt="Lamb Chops" loading="lazy"></div><div class="dish-b"><h4>Lamb Chops <span class="price">99<span class="cur"> AED</span></span></h4><p>5 pieces char-grilled lamb chops, fries.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-lamb-chops.jpg" alt="Lamb Chops" loading="lazy"></div><div class="dish-b"><h4>Lamb Chops <span class="price">99<span class="cur"> AED</span></span></h4><p>5 pieces char-grilled lamb chops, fries.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/1000316061.jpg" alt="Lamb Shank" loading="lazy"></div><div class="dish-b"><h4>Lamb Shank <span class="price">90<span class="cur"> AED</span></span></h4><p>Slow-cooked shank, mashed potato, vegetables.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Sharing</span><img src="images/dish-mixed-grill.jpg" alt="Mixed Grill" loading="lazy"></div><div class="dish-b"><h4>Mixed Grill <span class="price">83<span class="cur"> AED</span></span></h4><p>Kabab, meat &amp; chicken skewers, fries, garlic.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-shish-tawook.jpg" alt="Shish Tawook" loading="lazy"></div><div class="dish-b"><h4>Shish Tawook <span class="price">57<span class="cur"> AED</span></span></h4><p>Chicken breast cubes, fries, garlic sauce.</p></div></article>
@@ -488,7 +564,7 @@
       <div class="cat-bar"><h3>Seafood</h3><span class="ar">مأكولات بحرية</span><span class="ct">Lemon &amp; garlic sauce</span></div>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/1000316064.jpg" alt="Grilled fish" loading="lazy"></div><div class="dish-b"><h4>Grilled Seafood <span class="price">85<span class="cur"> AED</span></span></h4><p>Catch of the day, lemon &amp; garlic sauce, rice.</p></div></article>
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-grilled-salmon.jpg" alt="Grilled Salmon" loading="lazy"></div><div class="dish-b"><h4>Grilled Salmon <span class="price">95<span class="cur"> AED</span></span></h4><p>Salmon fillet, herbs &amp; olive oil.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-grilled-salmon.jpg" alt="Grilled Salmon" loading="lazy"></div><div class="dish-b"><h4>Grilled Salmon <span class="price">95<span class="cur"> AED</span></span></h4><p>Salmon fillet, herbs &amp; olive oil.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-grilled-shrimp.jpg" alt="Grilled Shrimp" loading="lazy"></div><div class="dish-b"><h4>Grilled Shrimp <span class="price">109<span class="cur"> AED</span></span></h4><p>7 pieces, fries, butter-lemon sauce.</p></div></article>
       </div>
     </div>
@@ -497,9 +573,9 @@
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Shamiat Specials</h3><span class="ar">أطباق شامية</span><span class="ct">Slow-cooked &amp; traditional</span></div>
       <div class="dish-grid">
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/1000316078.jpg" alt="Musakhan chicken" loading="lazy"></div><div class="dish-b"><h4>Musakhan Chicken <span class="price">56<span class="cur"> AED</span></span></h4><p>Sumac, caramelised onion, almonds, pomegranate, taboon bread.</p></div></article>
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-oze-lamb.jpg" alt="Oze Lamb Special" loading="lazy"></div><div class="dish-b"><h4>Oze Lamb Special <span class="price">75<span class="cur"> AED</span></span></h4><p>Rice with minced meat, green peas, lamb neck; yogurt on the side.</p></div></article>
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-special-shamiat.jpg" alt="Special Shamiat" loading="lazy"></div><div class="dish-b"><h4>Special Shamiat <span class="price">95<span class="cur"> AED</span></span></h4><p>Lamb with mixed vegetables in house sauce.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/1000316078.jpg" alt="Musakhan chicken" loading="lazy"></div><div class="dish-b"><h4>Musakhan Chicken <span class="price">56<span class="cur"> AED</span></span></h4><p>Sumac, caramelised onion, almonds, pomegranate, taboon bread.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-oze-lamb.jpg" alt="Oze Lamb Special" loading="lazy"></div><div class="dish-b"><h4>Oze Lamb Special <span class="price">75<span class="cur"> AED</span></span></h4><p>Rice with minced meat, green peas, lamb neck; yogurt on the side.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-special-shamiat.jpg" alt="Special Shamiat" loading="lazy"></div><div class="dish-b"><h4>Special Shamiat <span class="price">95<span class="cur"> AED</span></span></h4><p>Lamb with mixed vegetables in house sauce.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-mansaf.jpg" alt="Jordanian Mansaf" loading="lazy"></div><div class="dish-b"><h4>Jordanian Mansaf <span class="price">65<span class="cur"> AED</span></span></h4><p>Rice, jameed yogurt &amp; tender lamb.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-mansaf-mlahea.jpg" alt="Mansaf Mlahea" loading="lazy"></div><div class="dish-b"><h4>Mansaf Mlahea <span class="price">65<span class="cur"> AED</span></span></h4><p>Bulgur, jameed, fried kibbeh &amp; lamb.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/1000316074.jpg" alt="Sausages with tongues platter" loading="lazy"></div><div class="dish-b"><h4>Sausages with Tongues <span class="price">78<span class="cur"> AED</span></span></h4><p>Damascene platter of mumbar, trotters &amp; tongue.</p></div></article>
@@ -539,7 +615,7 @@
         <article class="dish ph"><div class="plate"><img src="images/dish-spinach-manakish.jpg" alt="Spinach" loading="lazy"></div><div class="dish-b"><h4>Spinach <span class="price">19<span class="cur"> AED</span></span></h4><p>Spinach, onion, walnut, pomegranate, sumac.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-soujouk-cheese.jpg" alt="Soujouk &amp; Cheese" loading="lazy"></div><div class="dish-b"><h4>Soujouk &amp; Cheese <span class="price">25<span class="cur"> AED</span></span></h4><p>Spiced sausage &amp; melted cheese.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-cheese-meat.jpg" alt="Cheese &amp; Meat" loading="lazy"></div><div class="dish-b"><h4>Cheese &amp; Meat <span class="price">26<span class="cur"> AED</span></span></h4><p>Minced meat, onion &amp; mozzarella.</p></div></article>
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-manakish-special.jpg" alt="Shamiat Special" loading="lazy"></div><div class="dish-b"><h4>Shamiat Special <span class="price">24<span class="cur"> AED</span></span></h4><p>Akkawi, parsley &amp; mozzarella.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-manakish-special.jpg" alt="Shamiat Special" loading="lazy"></div><div class="dish-b"><h4>Shamiat Special <span class="price">24<span class="cur"> AED</span></span></h4><p>Akkawi, parsley &amp; mozzarella.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-falafel-veg-manakish.jpg" alt="Falafel Veg" loading="lazy"></div><div class="dish-b"><h4>Falafel Veg <span class="price">22<span class="cur"> AED</span></span></h4><p>Falafel, tomato, lettuce, pickles, tahini.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/1000316068.jpg" alt="Mujarmasha meat flatbread" loading="lazy"></div><div class="dish-b"><h4>Mujarmasha Meat <span class="price">33<span class="cur"> AED</span></span></h4><p>Flatbread topped with cubed meat &amp; pickles.</p></div></article>
       </div>
@@ -577,7 +653,7 @@
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Sweets</h3><span class="ar">حلويات</span><span class="ct">Made in-house</span></div>
       <div class="dish-grid">
-        <article class="dish ph"><div class="plate"><span class="badge sig">Signature</span><img src="images/dish-kunafa.jpg" alt="Shamiat Kunafa" loading="lazy"></div><div class="dish-b"><h4>Shamiat Kunafa <span class="price">25<span class="cur"> AED</span></span></h4><p>Cheese pastry, syrup &amp; pistachio.</p></div></article>
+        <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-kunafa.jpg" alt="Shamiat Kunafa" loading="lazy"></div><div class="dish-b"><h4>Shamiat Kunafa <span class="price">25<span class="cur"> AED</span></span></h4><p>Cheese pastry, syrup &amp; pistachio.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-kunafa-icecream.jpg" alt="Kunafa Ice Cream" loading="lazy"></div><div class="dish-b"><h4>Kunafa Ice Cream <span class="price">25<span class="cur"> AED</span></span></h4><p>Warm kunafa with ice cream.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-lazaqiat.jpg" alt="Lazaqiat" loading="lazy"></div><div class="dish-b"><h4>Lazaqiat <span class="price">26<span class="cur"> AED</span></span></h4><p>Sweet fried dough in syrup.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-cotton-candy-icecream.jpg" alt="Cotton Candy Ice Cream" loading="lazy"></div><div class="dish-b"><h4>Cotton Candy Ice Cream <span class="price">23<span class="cur"> AED</span></span></h4><p>Ice cream wrapped in cotton candy.</p></div></article>
@@ -824,9 +900,36 @@
   </div>
 </footer>
 
-<a href="https://wa.me/971547816266" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" class="wa-float">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-</a>
+<!-- floating social rail -->
+<div class="social-rail" aria-label="Shamiat on social media">
+  <a class="sr-wa" href="https://wa.me/971547816266" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M19.1 4.9A10 10 0 0 0 3.2 17.3L2 22l4.8-1.2A10 10 0 1 0 19.1 4.9zM12 20.1a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.7.8-2.8-.2-.3A8 8 0 1 1 12 20.1zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
+  <a class="sr-ig" href="https://www.instagram.com/shamiat.restaurant.ae/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zm5-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z"/></svg></a>
+  <a class="sr-fb" href="https://www.facebook.com/Shamiat.Restaurant.ae/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+  <a class="sr-tt" href="https://www.tiktok.com/@shamiat.restaurant.ae" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 5.4a4.5 4.5 0 0 1-1.3-3h-3.1v12.2a2.6 2.6 0 1 1-2.6-2.6c.27 0 .53.04.78.12v-3.2a5.8 5.8 0 0 0-.78-.05A5.7 5.7 0 1 0 15.2 14.6V8.5a7.5 7.5 0 0 0 4.4 1.4V6.8a4.5 4.5 0 0 1-3.1-1.4z"/></svg></a>
+</div>
+
+<!-- smart chatbot -->
+<button class="cbot-btn" id="cbotBtn" type="button" aria-label="Chat with Shamiat"><span class="pulse"></span><svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.2 1.1 4.2 2.9 5.6L4 21l4.8-1.6c1 .3 2.1.5 3.2.5 5.5 0 10-3.6 10-8s-4.5-9-10-9zm-4 9.3a1.3 1.3 0 1 1 1.3-1.3 1.3 1.3 0 0 1-1.3 1.3zm4 0a1.3 1.3 0 1 1 1.3-1.3 1.3 1.3 0 0 1-1.3 1.3zm4 0a1.3 1.3 0 1 1 1.3-1.3 1.3 1.3 0 0 1-1.3 1.3z"/></svg></button>
+<div class="cbot-panel" id="cbotPanel" role="dialog" aria-label="Shamiat assistant">
+  <div class="cbot-head">
+    <span class="av">🍽️</span>
+    <div><div class="ht">Shamiat Assistant</div><div class="hs"><i></i>Online now</div></div>
+    <button class="x" id="cbotClose" type="button" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="cbot-msgs" id="cbotMsgs"></div>
+  <div class="cbot-chips">
+    <button class="cbot-chip" type="button" data-q="See the menu">📋 Menu</button>
+    <button class="cbot-chip" type="button" data-q="Opening hours">🕐 Hours</button>
+    <button class="cbot-chip" type="button" data-q="Where are you located">📍 Location</button>
+    <button class="cbot-chip" type="button" data-q="Delivery options">🛵 Delivery</button>
+    <button class="cbot-chip" type="button" data-q="Catering">🎉 Catering</button>
+    <button class="cbot-chip" type="button" data-q="Signature dishes">⭐ Signature</button>
+  </div>
+  <form class="cbot-form" id="cbotForm">
+    <input id="cbotInput" type="text" placeholder="Ask about menu, prices, hours…" autocomplete="off">
+    <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+  </form>
+</div>
 
 <script>
   // scroll progress
@@ -896,6 +999,134 @@
   modal.querySelector('.sm-modal-bg').addEventListener('click',close);
   modal.querySelector('.sm-close').addEventListener('click',close);
   addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
+})();
+</script>
+
+<script>
+(function(){
+  /* ---- intro logo splash ---- */
+  var intro=document.getElementById('intro');
+  if(intro){
+    document.documentElement.classList.add('introlock');document.body.classList.add('introlock');
+    var hide=function(){intro.classList.add('gone');document.documentElement.classList.remove('introlock');document.body.classList.remove('introlock');setTimeout(function(){if(intro&&intro.parentNode)intro.parentNode.removeChild(intro);},900);};
+    setTimeout(hide,2100);
+    intro.addEventListener('click',hide);
+  }
+  /* ---- hero cinematic slideshow ---- */
+  var slides=[].slice.call(document.querySelectorAll('.hero-bg .hslide'));
+  if(slides.length>1){
+    var hi=0;
+    setInterval(function(){slides[hi].classList.remove('on');hi=(hi+1)%slides.length;slides[hi].classList.add('on');},5000);
+  }
+  /* ---- signature plates: tap to jump to the menu ---- */
+  var strip=document.getElementById('sigStrip');
+  if(strip){
+    var sx=0,sy=0,moved=0;
+    strip.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;moved=0;});
+    strip.addEventListener('pointermove',function(e){if(e.buttons)moved=Math.max(moved,Math.abs(e.clientX-sx),Math.abs(e.clientY-sy));});
+    strip.addEventListener('pointerup',function(){if(moved<8){var m=document.getElementById('menu');if(m)m.scrollIntoView({behavior:'smooth'});}});
+    strip.style.cursor='pointer';
+  }
+})();
+</script>
+
+<script>
+/* ===== Smart Shamiat assistant (answers from the live menu + FAQ) ===== */
+(function(){
+  var btn=document.getElementById('cbotBtn'),panel=document.getElementById('cbotPanel'),
+      msgs=document.getElementById('cbotMsgs'),form=document.getElementById('cbotForm'),
+      input=document.getElementById('cbotInput'),closeB=document.getElementById('cbotClose');
+  if(!btn) return;
+  var WA='https://wa.me/971547816266',IG='https://www.instagram.com/shamiat.restaurant.ae/',
+      FB='https://www.facebook.com/Shamiat.Restaurant.ae/',PH='+971 54 781 6266';
+  var menu=[];
+  document.querySelectorAll('.menu-cat').forEach(function(cat){
+    var h3=cat.querySelector('.cat-bar h3'),cn=h3?h3.textContent.trim():'';
+    cat.querySelectorAll('.dish').forEach(function(d){
+      var h=d.querySelector('.dish-b h4');if(!h)return;
+      var name=(h.childNodes[0]&&h.childNodes[0].textContent||'').trim();
+      var pr=h.querySelector('.price'),price=pr?pr.textContent.replace(/\s+/g,' ').trim():'';
+      var p=d.querySelector('.dish-b p'),desc=p?p.textContent.trim():'';
+      if(name)menu.push({name:name,price:price,cat:cn,desc:desc,veg:d.classList.contains('v')});
+    });
+  });
+  function words(s){return s.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(Boolean);}
+  function has(w,kws){var line=' '+w.join(' ')+' ';return kws.some(function(k){
+    if(k.indexOf(' ')>=0)return line.indexOf(' '+k+' ')>=0;
+    return w.some(function(x){return x===k||(k.length>=4&&x.indexOf(k)===0);});});}
+  function lnk(h,t){return '<a href="'+h+'" target="_blank" rel="noopener">'+t+'</a>';}
+  function jmp(id,t){return '<a href="#'+id+'">'+t+'</a>';}
+  var CATS=[
+    {k:['mezze','appetizer','appetiser','starter','meze'],id:'mezze',label:'Mezze & Appetizers'},
+    {k:['grill','charcoal','kebab','kabab','skewer','bbq','chops','tawook'],id:'grill',label:'Charcoal Grills'},
+    {k:['seafood','fish','salmon','shrimp','prawn'],id:'seafood',label:'Seafood'},
+    {k:['mansaf','oze','damascene','specials'],id:'specials',label:'Shamiat Specials'},
+    {k:['fakhara','clay pot','clay'],id:'fakhara',label:'Fakhara (clay pot)'},
+    {k:['manakish','manakeesh','zaatar','flatbread','bakery'],id:'manakeesh',label:'Manakeesh & Bakery'},
+    {k:['sweet','dessert','kunafa','knafeh','pudding'],id:'sweets',label:'Sweets'},
+    {k:['drink','juice','coffee','tea','cocktail','beverage','latte','cappuccino','espresso'],id:'drinks',label:'Drinks & Juices'}
+  ];
+  function listCat(c){
+    var items=menu.filter(function(m){var cn=(m.cat||'').toLowerCase();return c.k.some(function(k){return cn.indexOf(k)>=0;});});
+    if(!items.length)items=menu.filter(function(m){var nm=m.name.toLowerCase();return c.k.some(function(k){return nm.indexOf(k)>=0;});});
+    var top=items.slice(0,8).map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n');
+    return 'Our '+c.label+':\n'+top+(items.length>8?'\n…and more.':'')+'\n\n'+jmp(c.id,'See this section ↓')+'  ·  '+jmp('menu','full menu');
+  }
+  function findDish(q){
+    var stop=['do','you','have','is','there','the','a','an','price','of','how','much','cost','i','want','can','get','whats','what','for','me','your','any','order','need','like','to','show','tell','about','give','some','in','on','and'];
+    var toks=words(q).filter(function(t){return t.length>2&&stop.indexOf(t)<0;});
+    if(!toks.length)return [];
+    return menu.filter(function(m){var nm=' '+m.name.toLowerCase()+' ';return toks.every(function(t){return nm.indexOf(t)>=0;});})
+      .sort(function(a,b){return a.name.length-b.name.length;}).slice(0,6);
+  }
+  function reply(q){
+    var w=words(q);
+    if(has(w,['hi','hello','hey','salam','salaam','marhaba','assalam','yo','hola','good morning','good evening','good afternoon']))
+      return "Hello and welcome to Shamiat! 👋 I can help with our menu, prices, opening hours, location, delivery, catering or reservations. What would you like to know?";
+    if(has(w,['hour','hours','open','close','closing','timing','time','when','late']))
+      return "We're open <b>daily, 12:00 PM – 5:00 AM</b> 🕐 — a late-night home for Shami food on Sheikh Zayed Road.";
+    if(has(w,['where','location','address','find','located','map','directions','direction','duja','area','reach','parking']))
+      return "📍 <b>Duja Tower, Ground Floor, Sheikh Zayed Road</b>, Trade Centre First, Dubai.\n"+lnk('https://www.google.com/maps/search/?api=1&query=Shamiat+Restaurant+Duja+Tower+Sheikh+Zayed+Road+Dubai','Open in Google Maps →');
+    if(has(w,['deliver','delivery','talabat','deliveroo','noon','careem','smiles','keeta','takeaway','online']))
+      return "🛵 Order Shamiat on <b>Talabat, Deliveroo, noon, Careem, Smiles & Keeta</b>.\n"+jmp('order','See all order links ↓');
+    if(has(w,['reserve','reservation','book','booking','table']))
+      return "To reserve a table, message us on "+lnk(WA+'?text=Hi%20Shamiat%2C%20I%27d%20like%20to%20book%20a%20table.','WhatsApp')+" or call "+PH+". 🍽️";
+    if(has(w,['cater','catering','event','events','wedding','party','majlis','iftar','banquet','corporate','buffet']))
+      return "🎉 We cater weddings, majlis, corporate events, iftars and more across Dubai.\n"+jmp('catering','See catering ↓')+" · "+lnk(WA+'?text=Hi%20Shamiat%2C%20I%27d%20like%20a%20catering%20quote.','WhatsApp the team');
+    if(has(w,['phone','call','contact','number','whatsapp']))
+      return "📞 Call or WhatsApp us at <b>"+PH+"</b>.\n"+lnk(WA,'Chat on WhatsApp →');
+    if(has(w,['instagram','facebook','social','follow','insta','reels','tiktok']))
+      return "Follow us 💛\n"+lnk(IG,'Instagram')+"  ·  "+lnk(FB,'Facebook');
+    if(has(w,['halal']))
+      return "Yes — Shamiat is a <b>100% halal</b> kitchen. ✅";
+    if(has(w,['vegetarian','vegan','veggie','meatless'])){
+      var v=menu.filter(function(m){return m.veg;}).slice(0,8).map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n');
+      return "Plenty for vegetarians 🌿:\n"+v+"\n\n"+jmp('menu','full menu ↓');}
+    if(has(w,['signature','best','recommend','recommended','popular','famous','must','top','specialty','speciality'])){
+      var sig=['Jordanian Mansaf','Oze Lamb','Musakhan','Lamb Shank','Mixed Grill','Kunafa'];
+      var lines=sig.map(function(nm){var m=menu.filter(function(x){return x.name.toLowerCase().indexOf(nm.toLowerCase())>=0;})[0];return '⭐ '+(m?m.name:nm)+(m&&m.price?' — '+m.price:'');}).join('\n');
+      return "Our signature plates ⭐\n"+lines+"\n\n"+jmp('signatures','See signatures ↓');}
+    var ds=findDish(q);
+    if(ds.length){
+      if(ds.length===1)return ds[0].name+" is <b>"+(ds[0].price||'on our menu')+"</b>."+(ds[0].desc?'\n'+ds[0].desc:'')+"\n\n"+jmp('menu','full menu ↓');
+      return "Here's what I found:\n"+ds.map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n')+"\n\n"+jmp('menu','full menu ↓');}
+    for(var k=0;k<CATS.length;k++){if(has(w,CATS[k].k))return listCat(CATS[k]);}
+    if(has(w,['menu','eat','food','dish','dishes','hungry','serve']))
+      return "We serve a full Shami table — mezze, grills, seafood, Damascene specials, fakhara, manakish, pizza, sweets & juices ("+menu.length+"+ items).\n"+jmp('menu','Browse the menu ↓')+' · <a href="menu/shamiat-menu.pdf" target="_blank" rel="noopener">download PDF</a>';
+    if(has(w,['thank','thanks','shukran','great','awesome','nice','perfect']))
+      return "You're most welcome! 💛 Anything else — menu, hours, delivery or catering?";
+    return "I'm not sure I caught that 🤔 — I can help with:\n• Menu & prices\n• Opening hours & location\n• Delivery & online order\n• Catering & reservations\n\nOr message us on "+lnk(WA,'WhatsApp')+".";
+  }
+  function add(html,who){var m=document.createElement('div');m.className='cbot-msg '+(who||'bot');m.innerHTML=html;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;}
+  function send(q){add(q.replace(/</g,'&lt;'),'user');setTimeout(function(){add(reply(q),'bot');},300);}
+  var opened=false;
+  function open(){panel.classList.add('open');btn.style.display='none';
+    if(!opened){opened=true;add("Welcome to <b>Shamiat</b> 👋 Ask me about our menu, prices, hours, delivery, catering or reservations — or tap a button below.");}
+    setTimeout(function(){input.focus();},300);}
+  function close(){panel.classList.remove('open');btn.style.display='flex';}
+  btn.addEventListener('click',open);closeB.addEventListener('click',close);
+  form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();if(!v)return;input.value='';send(v);});
+  document.querySelectorAll('.cbot-chip').forEach(function(c){c.addEventListener('click',function(){send(c.getAttribute('data-q')||c.textContent.trim());});});
 })();
 </script>
 </body>
