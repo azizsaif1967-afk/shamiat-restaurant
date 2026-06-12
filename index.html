@@ -429,13 +429,58 @@
   .faq-a a{color:var(--gold-l)}
 
   /* dish reel (autoplaying) */
-  .reelsec{padding:66px 0 74px;background:linear-gradient(180deg,#120d09,var(--bg))}
+  .reelsec{padding:66px 0 80px;background:linear-gradient(180deg,#120d09,var(--bg))}
   .reelsec .wrap{display:flex;flex-direction:column;align-items:center}
-  .reel-box{position:relative;width:min(330px,82vw);aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.6);margin-top:10px;background:#000}
+  .reel-stage{display:flex;align-items:center;justify-content:center;gap:22px;max-width:1060px;width:100%;margin:18px auto 0;padding:0 24px}
+  .reel-cols{display:flex;flex-direction:column;gap:18px;flex:0 1 290px}
+  .rt{position:relative;width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#1a1510;box-shadow:0 16px 40px rgba(0,0,0,.42)}
+  .rt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease}
+  .rt img.on{opacity:1}
+  .rt::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 56%,rgba(0,0,0,.6))}
+  .rt .rt-cap{position:absolute;left:13px;bottom:11px;z-index:2;font-family:var(--label);font-size:.74rem;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+  .reel-box{position:relative;flex:0 0 auto;width:min(326px,86vw);aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.6);background:#000}
   .reel-box video{width:100%;height:100%;object-fit:cover;display:block}
+  @media(max-width:880px){.reel-cols{display:none}.reel-stage{gap:0;padding:0 16px}}
   .reel-unmute{position:absolute;right:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(14,11,8,.66);backdrop-filter:blur(6px);border:1px solid var(--line);color:#fff;font-family:var(--label);font-size:.72rem;letter-spacing:.03em;padding:8px 13px;border-radius:99px;cursor:pointer;transition:border-color .2s}
   .reel-unmute:hover{border-color:var(--gold)}
   .reel-unmute svg{width:16px;height:16px;fill:var(--gold-l)}
+
+  /* ===== ONLINE ORDERING (select dishes → cart → WhatsApp) ===== */
+  .order-hint{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;text-align:center;max-width:680px;margin:0 auto 26px;padding:12px 18px;background:rgba(217,168,108,.08);border:1px solid var(--line);border-radius:14px;font-family:var(--label);font-size:.86rem;color:var(--gold-l)}
+  .dish-add{margin-top:11px;display:inline-flex;align-items:center;gap:6px;font-family:var(--label);font-size:.74rem;font-weight:700;letter-spacing:.02em;color:var(--ink);background:var(--gold);border:none;border-radius:99px;padding:7px 14px;cursor:pointer;transition:transform .15s,background .2s}
+  .dish-add:hover{background:var(--gold-l);transform:translateY(-1px)}
+  .dish-add.added{background:var(--sage,#8DA15F);color:#0E0B08}
+  .cartbar{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(160%);z-index:73;display:flex;align-items:center;gap:13px;background:var(--gold);color:var(--ink);font-family:var(--label);font-weight:700;font-size:.92rem;padding:13px 20px;border-radius:99px;box-shadow:0 16px 44px rgba(217,168,108,.45);cursor:pointer;transition:transform .35s cubic-bezier(.16,1,.3,1);max-width:calc(100vw - 28px)}
+  .cartbar.show{transform:translateX(-50%) translateY(0)}
+  .cartbar .ct-n{background:var(--ink);color:var(--gold);border-radius:99px;padding:2px 10px;font-size:.82rem}
+  .cart-ov{position:fixed;inset:0;z-index:90;background:rgba(8,6,4,.66);opacity:0;pointer-events:none;transition:opacity .3s}
+  .cart-ov.open{opacity:1;pointer-events:auto}
+  .cart{position:fixed;z-index:91;right:0;top:0;height:100%;width:min(420px,100vw);background:var(--bg);border-left:1px solid var(--line);box-shadow:-20px 0 60px rgba(0,0,0,.6);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+  .cart.open{transform:none}
+  .cart-h{display:flex;align-items:center;gap:10px;padding:18px;border-bottom:1px solid var(--line)}
+  .cart-h h3{font-family:var(--display);color:#fff;margin:0;font-size:1.22rem}
+  .cart-h .x{margin-left:auto;background:none;border:none;color:var(--silver-2);font-size:1.7rem;cursor:pointer;line-height:1}
+  .cart-items{flex:1;overflow-y:auto;padding:6px 18px}
+  .ci{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-2)}
+  .ci .nm{flex:1;color:#fff;font-size:.95rem}
+  .ci .nm small{display:block;color:var(--gold-l);font-family:var(--label);font-size:.8rem;margin-top:3px}
+  .ci .q{display:flex;align-items:center;gap:9px}
+  .ci .q button{width:27px;height:27px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--gold-l);cursor:pointer;font-size:1.05rem;line-height:1}
+  .ci .q span{min-width:16px;text-align:center;color:#fff;font-family:var(--label)}
+  .cart-empty{padding:60px 24px;text-align:center;color:var(--silver-2);font-size:.95rem}
+  .cart-f{border-top:1px solid var(--line);padding:16px 18px}
+  .cart-f .trow{display:flex;justify-content:space-between;align-items:baseline;color:#fff;font-family:var(--label);font-weight:700;font-size:1.15rem;margin-bottom:13px}
+  .cart-f .trow b{color:var(--gold);font-size:1.3rem}
+  .cart-mode{display:flex;gap:8px;margin-bottom:10px}
+  .cart-mode button{flex:1;padding:9px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--silver);font-family:var(--label);font-size:.82rem;cursor:pointer}
+  .cart-mode button.on{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+  .cart-in{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:#fff;font-family:var(--sans);font-size:.92rem;outline:none;margin-bottom:9px}
+  .cart-in:focus{border-color:var(--gold)}
+  .cart-send{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#25d366;color:#fff;border:none;border-radius:12px;padding:14px;font-family:var(--label);font-weight:700;font-size:1rem;cursor:pointer;transition:transform .15s}
+  .cart-send:hover{transform:translateY(-1px)}
+  .cart-send:disabled{opacity:.5;cursor:not-allowed}
+  .cart-send svg{width:20px;height:20px;fill:#fff}
+  @media(max-width:600px){.cart{width:100vw}.cartbar{bottom:16px}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://shamiatrestaurant.com/"},{"@type":"ListItem","position":2,"name":"Shamiat Restaurant","item":"https://shamiatrestaurant.com/"}]}
@@ -562,22 +607,50 @@
     <h2>A taste of <em>Shamiat</em></h2>
     <p>Our real signature dishes, shot in our own kitchen — with Arabic narration. Tap for sound.</p>
   </div>
-  <div class="reel-box reveal">
-    <video id="dishReel" src="shamiat-reel.mp4" poster="images/1000316061.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shamiat signature dishes reel"></video>
-    <button class="reel-unmute" id="reelUnmute" type="button" aria-label="Unmute for Arabic narration">
-      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-      <span id="reelUnmuteTxt">Tap for sound</span>
-    </button>
+  <div class="reel-stage reveal">
+    <div class="reel-cols" id="reelColsL" aria-hidden="true">
+      <div class="rt"><span class="rt-cap"></span></div>
+      <div class="rt"><span class="rt-cap"></span></div>
+    </div>
+    <div class="reel-box">
+      <video id="dishReel" src="shamiat-reel.mp4" poster="images/1000316061.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shamiat signature dishes reel"></video>
+      <button class="reel-unmute" id="reelUnmute" type="button" aria-label="Unmute for Arabic narration">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+        <span id="reelUnmuteTxt">Tap for sound</span>
+      </button>
+    </div>
+    <div class="reel-cols" id="reelColsR" aria-hidden="true">
+      <div class="rt"><span class="rt-cap"></span></div>
+      <div class="rt"><span class="rt-cap"></span></div>
+    </div>
   </div>
 </section>
 <script>
 (function(){
   var v=document.getElementById('dishReel'),b=document.getElementById('reelUnmute'),t=document.getElementById('reelUnmuteTxt');
-  if(!v||!b)return;
-  b.addEventListener('click',function(){
+  if(v&&b)b.addEventListener('click',function(){
     v.muted=!v.muted;
     if(!v.muted){v.currentTime=0;v.play();t.textContent='Sound on';}
     else{t.textContent='Tap for sound';}
+  });
+  /* rotating columns of the original dish photos */
+  var P=[['1000316072.jpg','The spread'],['1000316078.jpg','Musakhan'],['1000316061.jpg','Lamb Shank'],
+    ['1000316060.jpg','Lamb & Vine Leaves'],['1000316066.jpg','Kibbeh in Laban'],['1000316074.jpg','Sausages & Tongues'],
+    ['1000316064.jpg','Grilled Fish'],['1000316076.jpg','Zucchini in Laban'],['1000316080.jpg','Yalanji'],
+    ['1000316068.jpg','Mujarmasha'],['1000316070.jpg','Fakhara']];
+  var tiles=[].slice.call(document.querySelectorAll('#reel .rt'));
+  tiles.forEach(function(tile,ti){
+    var cap=tile.querySelector('.rt-cap');
+    var a=document.createElement('img'),b2=document.createElement('img');
+    a.loading='lazy';b2.loading='lazy';
+    tile.insertBefore(b2,tile.firstChild);tile.insertBefore(a,tile.firstChild);
+    var idx=(ti*3)%P.length, cur=a, nxt=b2;
+    cur.src='images/'+P[idx][0];cur.alt=P[idx][1];cur.className='on';if(cap)cap.textContent=P[idx][1];
+    setInterval(function(){
+      idx=(idx+tiles.length)%P.length;
+      nxt.src='images/'+P[idx][0];nxt.alt=P[idx][1];
+      nxt.onload=function(){nxt.classList.add('on');cur.classList.remove('on');if(cap)cap.textContent=P[idx][1];var tmp=cur;cur=nxt;nxt=tmp;};
+    },2800+ti*450);
   });
 })();
 </script>
@@ -1285,6 +1358,102 @@
   btn.addEventListener('click',open);closeB.addEventListener('click',close);
   form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();if(!v)return;input.value='';send(v);});
   document.querySelectorAll('.cbot-chip').forEach(function(c){c.addEventListener('click',function(){send(c.getAttribute('data-q')||c.textContent.trim());});});
+})();
+</script>
+<script>
+/* ===== Online ordering: select dishes → cart → WhatsApp ===== */
+(function(){
+  var WA='971547816266';
+  var cart={};            // name -> {name, price, qty}
+  var mode='Delivery';
+
+  function num(el){return el?parseInt((el.textContent||'').replace(/[^0-9]/g,''),10)||0:0;}
+
+  // 1) add an "Add" button to every priced dish
+  var dishes=document.querySelectorAll('article.dish, .dish');
+  dishes.forEach(function(d){
+    var b=d.querySelector('.dish-b');if(!b)return;
+    var h=b.querySelector('h4');if(!h)return;
+    var name=(h.childNodes[0]&&h.childNodes[0].textContent||'').replace(/\s+/g,' ').trim();
+    var price=num(h.querySelector('.price'));
+    if(!name||!price)return;
+    var add=document.createElement('button');
+    add.className='dish-add';add.type='button';add.textContent='＋ Add · '+price+' AED';
+    add.addEventListener('click',function(){
+      cart[name]=cart[name]||{name:name,price:price,qty:0};cart[name].qty++;
+      add.classList.add('added');add.textContent='✓ Added';
+      setTimeout(function(){add.classList.remove('added');add.textContent='＋ Add · '+price+' AED';},900);
+      update();
+    });
+    b.appendChild(add);
+  });
+
+  // 2) build cart bar + drawer
+  var bar=document.createElement('button');bar.className='cartbar';bar.type='button';
+  bar.innerHTML='<span class="ct-n" id="ctN">0</span> <span>View order</span> · <span id="ctT">0 AED</span> →';
+  document.body.appendChild(bar);
+  var ov=document.createElement('div');ov.className='cart-ov';document.body.appendChild(ov);
+  var drawer=document.createElement('div');drawer.className='cart';
+  drawer.innerHTML='<div class="cart-h"><h3>Your order 🛒</h3><button class="x" type="button" aria-label="Close">&times;</button></div>'+
+    '<div class="cart-items" id="ciList"></div>'+
+    '<div class="cart-f">'+
+      '<div class="trow"><span>Total</span><b id="ctTotal">0 AED</b></div>'+
+      '<div class="cart-mode"><button type="button" data-m="Delivery" class="on">🛵 Delivery</button><button type="button" data-m="Pickup">🥡 Pickup</button></div>'+
+      '<input class="cart-in" id="cName" type="text" placeholder="Your name (optional)">'+
+      '<input class="cart-in" id="cArea" type="text" placeholder="Delivery area / building (optional)">'+
+      '<button class="cart-send" id="cSend" type="button" disabled><svg viewBox="0 0 24 24"><path d="M19.1 4.9A10 10 0 0 0 3.2 17.3L2 22l4.8-1.2A10 10 0 1 0 19.1 4.9z"/></svg> Send order on WhatsApp</button>'+
+    '</div>';
+  document.body.appendChild(drawer);
+
+  var ciList=drawer.querySelector('#ciList'),cName=drawer.querySelector('#cName'),cArea=drawer.querySelector('#cArea'),cSend=drawer.querySelector('#cSend');
+  function open(){ov.classList.add('open');drawer.classList.add('open');}
+  function close(){ov.classList.remove('open');drawer.classList.remove('open');}
+  bar.addEventListener('click',open);ov.addEventListener('click',close);
+  drawer.querySelector('.x').addEventListener('click',close);
+  drawer.querySelectorAll('.cart-mode button').forEach(function(mb){
+    mb.addEventListener('click',function(){mode=mb.getAttribute('data-m');
+      drawer.querySelectorAll('.cart-mode button').forEach(function(x){x.classList.remove('on');});mb.classList.add('on');
+      cArea.placeholder=mode==='Delivery'?'Delivery area / building (optional)':'Pickup time (optional)';});
+  });
+
+  function totals(){var n=0,t=0;Object.keys(cart).forEach(function(k){n+=cart[k].qty;t+=cart[k].qty*cart[k].price;});return{n:n,t:t};}
+  function update(){
+    var tt=totals();
+    document.getElementById('ctN').textContent=tt.n;
+    document.getElementById('ctT').textContent=tt.t+' AED';
+    document.getElementById('ctTotal').textContent=tt.t+' AED';
+    bar.classList.toggle('show',tt.n>0);
+    cSend.disabled=tt.n===0;
+    if(tt.n===0&&drawer.classList.contains('open'))close();
+    // render items
+    var keys=Object.keys(cart);
+    if(!keys.length){ciList.innerHTML='<div class="cart-empty">No items yet.<br>Tap “＋ Add” on any dish.</div>';return;}
+    ciList.innerHTML='';
+    keys.forEach(function(k){
+      var it=cart[k],row=document.createElement('div');row.className='ci';
+      row.innerHTML='<div class="nm">'+it.name+'<small>'+(it.qty*it.price)+' AED</small></div>'+
+        '<div class="q"><button type="button" class="mn">–</button><span>'+it.qty+'</span><button type="button" class="pl">＋</button></div>';
+      row.querySelector('.mn').addEventListener('click',function(){it.qty--;if(it.qty<=0)delete cart[k];update();});
+      row.querySelector('.pl').addEventListener('click',function(){it.qty++;update();});
+      ciList.appendChild(row);
+    });
+  }
+  cSend.addEventListener('click',function(){
+    var keys=Object.keys(cart);if(!keys.length)return;var tt=totals();
+    var lines=keys.map(function(k){var it=cart[k];return '• '+it.qty+'× '+it.name+' — '+(it.qty*it.price)+' AED';});
+    var msg='*New order — Shamiat Restaurant*\n\n'+lines.join('\n')+'\n\n*Total: '+tt.t+' AED*\n*Order type: '+mode+'*';
+    var nm=cName.value.trim(),ar=cArea.value.trim();
+    if(nm)msg+='\nName: '+nm;
+    if(ar)msg+='\n'+(mode==='Delivery'?'Delivery to':'Pickup time')+': '+ar;
+    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+  });
+
+  // 3) hint banner at top of the menu
+  var menu=document.getElementById('menu');
+  if(menu){var wrap=menu.querySelector('.wrap')||menu;var hint=document.createElement('div');hint.className='order-hint';
+    hint.innerHTML='🛒 <b>Order online:</b> tap “＋ Add” on any dish to build your order, then send it to us on WhatsApp.';
+    var head=menu.querySelector('.sec-head');if(head&&head.parentNode){head.parentNode.insertBefore(hint,head.nextSibling);}else{wrap.insertBefore(hint,wrap.firstChild);}}
+  update();
 })();
 </script>
 </body>
