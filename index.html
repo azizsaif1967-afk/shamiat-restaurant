@@ -1048,6 +1048,8 @@
     <button class="cbot-chip" type="button" data-q="Delivery options">🛵 Delivery</button>
     <button class="cbot-chip" type="button" data-q="Catering">🎉 Catering</button>
     <button class="cbot-chip" type="button" data-q="Signature dishes">⭐ Signature</button>
+    <button class="cbot-chip" type="button" data-q="Reserve a table">🍽️ Reserve</button>
+    <button class="cbot-chip" type="button" data-q="Chat on WhatsApp">💬 WhatsApp</button>
   </div>
   <form class="cbot-form" id="cbotForm">
     <input id="cbotInput" type="text" placeholder="Ask about menu, prices, hours…" autocomplete="off">
@@ -1180,6 +1182,21 @@
     return w.some(function(x){return x===k||(k.length>=4&&x.indexOf(k)===0);});});}
   function lnk(h,t){return '<a href="'+h+'" target="_blank" rel="noopener">'+t+'</a>';}
   function jmp(id,t){return '<a href="#'+id+'">'+t+'</a>';}
+  /* index every FAQ on the page so the bot can answer straight from the site content */
+  var STOP=['the','a','an','is','are','do','does','you','your','have','has','to','of','for','me','my','i','we','on','in','at','and','or','what','which','where','when','why','how','much','many','can','could','get','got','near','this','that','with','it','its','they','there','here','please','tell','about','give','show','need','want','some','any','also'];
+  function keyw(s){return words(s).filter(function(t){return t.length>2&&STOP.indexOf(t)<0;});}
+  var faqs=[];
+  document.querySelectorAll('.faq-item').forEach(function(it){
+    var s=it.querySelector('summary'),a=it.querySelector('.faq-a');
+    if(s&&a){var qt=s.textContent.trim();faqs.push({q:qt,a:a.innerHTML.trim(),w:keyw(qt)});}
+  });
+  function findFaq(q){
+    var qw=keyw(q);if(!qw.length)return null;var best=null,bs=0;
+    faqs.forEach(function(fq){var s=0;qw.forEach(function(t){
+      if(fq.w.indexOf(t)>=0)s+=1;else if(fq.q.toLowerCase().indexOf(t)>=0)s+=0.5;});
+      if(s>bs){bs=s;best=fq;}});
+    return bs>=1.5?best:null;
+  }
   var CATS=[
     {k:['mezze','appetizer','appetiser','starter','meze'],id:'mezze',label:'Mezze & Appetizers'},
     {k:['grill','charcoal','kebab','kabab','skewer','bbq','chops','tawook'],id:'grill',label:'Charcoal Grills'},
@@ -1209,7 +1226,7 @@
       return "Hello and welcome to Shamiat! 👋 I can help with our menu, prices, opening hours, location, delivery, catering or reservations. What would you like to know?";
     if(has(w,['hour','hours','open','close','closing','timing','time','when','late']))
       return "We're open <b>daily, 12:00 PM – 5:00 AM</b> 🕐 — a late-night home for Shami food on Sheikh Zayed Road.";
-    if(has(w,['where','location','address','find','located','map','directions','direction','duja','area','reach','parking']))
+    if(has(w,['where','location','address','find','located','map','directions','direction','duja','area','reach','parking','near','nearest','nearby','close','closest','around','distance','far','trade centre','sheikh zayed','difc','downtown']))
       return "📍 <b>Duja Tower, Ground Floor, Sheikh Zayed Road</b>, Trade Centre First, Dubai.\n"+lnk('https://www.google.com/maps/search/?api=1&query=Shamiat+Restaurant+Duja+Tower+Sheikh+Zayed+Road+Dubai','Open in Google Maps →');
     if(has(w,['deliver','delivery','talabat','deliveroo','noon','careem','smiles','keeta','takeaway','online']))
       return "🛵 Order Shamiat on <b>Talabat, Deliveroo, noon, Careem, Smiles & Keeta</b>.\n"+jmp('order','See all order links ↓');
@@ -1223,23 +1240,40 @@
       return "Follow us 💛\n"+lnk(IG,'Instagram')+"  ·  "+lnk(FB,'Facebook');
     if(has(w,['halal']))
       return "Yes — Shamiat is a <b>100% halal</b> kitchen. ✅";
-    if(has(w,['vegetarian','vegan','veggie','meatless'])){
-      var v=menu.filter(function(m){return m.veg;}).slice(0,8).map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n');
-      return "Plenty for vegetarians 🌿:\n"+v+"\n\n"+jmp('menu','full menu ↓');}
+    if(has(w,['vegetarian','vegan','veggie','meatless','plant'])){
+      var vv=menu.filter(function(m){return m.veg;});
+      if(!vv.length){var vn=['hummus','mutabbal','moutabal','baba','tabbouleh','fattoush','falafel','yalanji','vine leave','zaatar','manakish','muhammara','mhamara','foul','fava','labneh','salad','fries','cheese'];
+        vv=menu.filter(function(m){var nm=m.name.toLowerCase();return vn.some(function(x){return nm.indexOf(x)>=0;});});}
+      var vl=vv.slice(0,8).map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n');
+      return "Plenty for vegetarians 🌿:\n"+(vl||'• Hummus\n• Mutabbal\n• Tabbouleh\n• Fattoush\n• Falafel\n• Zaatar Manakish')+"\n\n"+jmp('menu','full menu ↓');}
     if(has(w,['signature','best','recommend','recommended','popular','famous','must','top','specialty','speciality'])){
       var sig=['Jordanian Mansaf','Oze Lamb','Musakhan','Lamb Shank','Mixed Grill','Kunafa'];
       var lines=sig.map(function(nm){var m=menu.filter(function(x){return x.name.toLowerCase().indexOf(nm.toLowerCase())>=0;})[0];return '⭐ '+(m?m.name:nm)+(m&&m.price?' — '+m.price:'');}).join('\n');
       return "Our signature plates ⭐\n"+lines+"\n\n"+jmp('signatures','See signatures ↓');}
+    if(has(w,['syrian','lebanese','levantine','shami','cuisine','authentic','damascus','damascene','kind of food','type of food','sort of food']))
+      return "Shamiat is an authentic <b>Syrian & Levantine (Shami)</b> kitchen 🇸🇾 — cold & hot mezze, charcoal grills, Damascene mains (mansaf, fattah, shish barak, kibbeh), fresh manakish and Arabic sweets. All <b>100% halal</b>.\n"+jmp('menu','Browse the menu ↓');
+    if(has(w,['iftar','suhoor','sahoor','ramadan']))
+      return "🌙 We're open <b>till 5:00 AM</b> — perfect for suhoor — and we cater <b>iftar</b> & Ramadan majlis across Dubai.\n"+jmp('catering','Catering ↓')+" · "+lnk(WA,'WhatsApp us');
+    if(has(w,['review','reviews','rating','rated','stars','reputation']))
+      return "We're rated <b>4.5★ from 1,300+ reviews</b> ⭐ — guests love the mansaf, charcoal grills and the late-night welcome.";
+    if(has(w,['alcohol','beer','wine','bar','pork']))
+      return "Shamiat is a <b>100% halal</b> family restaurant, so we don't serve alcohol or pork — but we have fresh juices, mocktails, tea & Arabic coffee 🍹.";
+    if(has(w,['card','cards','cash','payment','pay','visa','mastercard','apple pay','google pay','debit','credit']))
+      return "💳 Yes — we accept <b>cash and major credit/debit cards</b> (Visa, Mastercard) and contactless pay. For anything specific, "+lnk(WA,'message us on WhatsApp')+".";
     var ds=findDish(q);
     if(ds.length){
       if(ds.length===1)return ds[0].name+" is <b>"+(ds[0].price||'on our menu')+"</b>."+(ds[0].desc?'\n'+ds[0].desc:'')+"\n\n"+jmp('menu','full menu ↓');
       return "Here's what I found:\n"+ds.map(function(m){return '• '+m.name+(m.price?' — '+m.price:'');}).join('\n')+"\n\n"+jmp('menu','full menu ↓');}
     for(var k=0;k<CATS.length;k++){if(has(w,CATS[k].k))return listCat(CATS[k]);}
+    if(has(w,['price','prices','cost','expensive','cheap','budget','affordable','pricey']))
+      return "Prices are in AED with generous sharing portions — mezze are mostly ~20–35 AED and grills & mains ~50–90 AED.\n"+jmp('menu','See full prices ↓')+' · <a href="menu/shamiat-menu.pdf" target="_blank" rel="noopener">menu PDF</a>';
     if(has(w,['menu','eat','food','dish','dishes','hungry','serve']))
       return "We serve a full Shami table — mezze, grills, seafood, Damascene specials, fakhara, manakish, pizza, sweets & juices ("+menu.length+"+ items).\n"+jmp('menu','Browse the menu ↓')+' · <a href="menu/shamiat-menu.pdf" target="_blank" rel="noopener">download PDF</a>';
     if(has(w,['thank','thanks','shukran','great','awesome','nice','perfect']))
       return "You're most welcome! 💛 Anything else — menu, hours, delivery or catering?";
-    return "I'm not sure I caught that 🤔 — I can help with:\n• Menu & prices\n• Opening hours & location\n• Delivery & online order\n• Catering & reservations\n\nOr message us on "+lnk(WA,'WhatsApp')+".";
+    var fq=findFaq(q);
+    if(fq)return fq.a;
+    return "I'm not sure I caught that 🤔 — I can help with:\n• Menu, dishes & prices\n• Opening hours & location\n• Delivery & online order\n• Catering & reservations\n\nOr message us on "+lnk(WA,'WhatsApp')+".";
   }
   function add(html,who){var m=document.createElement('div');m.className='cbot-msg '+(who||'bot');m.innerHTML=html;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;}
   function send(q){add(q.replace(/</g,'&lt;'),'user');setTimeout(function(){add(reply(q),'bot');},300);}
