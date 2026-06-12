@@ -427,6 +427,15 @@
   .faq-item[open] summary::before{content:"–"}
   .faq-a{font-size:.96rem;color:var(--silver);line-height:1.7;padding:0 0 18px 30px}
   .faq-a a{color:var(--gold-l)}
+
+  /* dish reel (autoplaying) */
+  .reelsec{padding:66px 0 74px;background:linear-gradient(180deg,#120d09,var(--bg))}
+  .reelsec .wrap{display:flex;flex-direction:column;align-items:center}
+  .reel-box{position:relative;width:min(330px,82vw);aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.6);margin-top:10px;background:#000}
+  .reel-box video{width:100%;height:100%;object-fit:cover;display:block}
+  .reel-unmute{position:absolute;right:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(14,11,8,.66);backdrop-filter:blur(6px);border:1px solid var(--line);color:#fff;font-family:var(--label);font-size:.72rem;letter-spacing:.03em;padding:8px 13px;border-radius:99px;cursor:pointer;transition:border-color .2s}
+  .reel-unmute:hover{border-color:var(--gold)}
+  .reel-unmute svg{width:16px;height:16px;fill:var(--gold-l)}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://shamiatrestaurant.com/"},{"@type":"ListItem","position":2,"name":"Shamiat Restaurant","item":"https://shamiatrestaurant.com/"}]}
@@ -545,6 +554,33 @@
   </div>
   <div class="sig-hint">↔ Drag · or just watch</div>
 </section>
+
+<!-- DISH REEL — autoplaying 12s montage of the real signature dishes -->
+<section class="reelsec" id="reel">
+  <div class="wrap sig-head reveal">
+    <span class="kicker">Watch · 12 seconds</span>
+    <h2>A taste of <em>Shamiat</em></h2>
+    <p>Our real signature dishes, shot in our own kitchen — with Arabic narration. Tap for sound.</p>
+  </div>
+  <div class="reel-box reveal">
+    <video id="dishReel" src="shamiat-reel.mp4" poster="images/1000316061.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shamiat signature dishes reel"></video>
+    <button class="reel-unmute" id="reelUnmute" type="button" aria-label="Unmute for Arabic narration">
+      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+      <span id="reelUnmuteTxt">Tap for sound</span>
+    </button>
+  </div>
+</section>
+<script>
+(function(){
+  var v=document.getElementById('dishReel'),b=document.getElementById('reelUnmute'),t=document.getElementById('reelUnmuteTxt');
+  if(!v||!b)return;
+  b.addEventListener('click',function(){
+    v.muted=!v.muted;
+    if(!v.muted){v.currentTime=0;v.play();t.textContent='Sound on';}
+    else{t.textContent='Tap for sound';}
+  });
+})();
+</script>
 
 <!-- MENU -->
 <section class="block" id="menu">
