@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://shamiatrestaurant.com/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-mansaf.jpg</image:loc>
+      <image:title>Jordanian Mansaf — Shamiat Restaurant, Sheikh Zayed Road, Dubai</image:title>
+      <image:caption>Jordanian Mansaf with jameed yogurt and tender lamb, served at Shamiat on Sheikh Zayed Road, Duja Tower, Dubai.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-mansaf-mlahea.jpg</image:loc>
+      <image:title>Mansaf Mlahea — Shamiat Restaurant Dubai</image:title>
+      <image:caption>Mansaf Mlahea — bulgur, jameed, fried kibbeh and lamb — a Shamiat signature dish.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-lamb-chops.jpg</image:loc>
+      <image:title>Charcoal-grilled Lamb Chops — Shamiat Restaurant, Sheikh Zayed Road, Dubai</image:title>
+      <image:caption>Five-piece char-grilled lamb chops from Shamiat's mangal grill, Trade Centre First, Dubai.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-mixed-grill.jpg</image:loc>
+      <image:title>Mixed Grill Platter — Shamiat Syrian Restaurant Dubai</image:title>
+      <image:caption>Sharing mixed grill platter of kebab, meat and chicken skewers at Shamiat on Sheikh Zayed Road.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-kunafa.jpg</image:loc>
+      <image:title>Shamiat Kunafa — Arabic dessert, Sheikh Zayed Road Dubai</image:title>
+      <image:caption>Shamiat's fresh kunafa — warm cheese pastry, rose syrup and crushed pistachio, made in-house daily.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-oze-lamb.jpg</image:loc>
+      <image:title>Oze Lamb Special — Shamiat Restaurant, Sheikh Zayed Road Dubai</image:title>
+      <image:caption>Oze lamb — slow-cooked lamb neck on spiced rice, a Levantine banquet dish at Shamiat.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/dish-fattoush.jpg</image:loc>
+      <image:title>Fattoush Salad — Syrian mezze at Shamiat Restaurant Dubai</image:title>
+      <image:caption>Fattoush salad with sumac, pomegranate molasses and fried bread, from Shamiat's mezze menu.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/1000316072.jpg</image:loc>
+      <image:title>The Shamiat Spread — Syrian &amp; Levantine feast, Sheikh Zayed Road Dubai</image:title>
+      <image:caption>A full Shami spread at Shamiat Restaurant — mezze, charcoal grills and mains on Sheikh Zayed Road, Dubai.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://shamiatrestaurant.com/images/shamiat-logo.png</image:loc>
+      <image:title>Shamiat Restaurant — authentic Syrian kitchen, Dubai</image:title>
+      <image:caption>Shamiat Restaurant logo — authentic Syrian and Levantine kitchen, Duja Tower, Sheikh Zayed Road, Dubai.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://shamiatrestaurant.com/menu/shamiat-menu.pdf</loc>

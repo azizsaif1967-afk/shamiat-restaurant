@@ -12,7 +12,9 @@
 - [x] **Step 3** — Menu/MenuItem schema for top dishes + a definitional AEO first-sentence under each menu category heading.
   _2026-06-13: Added Menu JSON-LD with 3 MenuSections (Shamiat Specials ×6, Charcoal Grill ×3, Mezze & Appetizers ×3 = 12 MenuItem entries), all with price/priceCurrency/suitableForDiet:HalalDiet. Added `.cat-def` AEO definitional first-sentence under all 11 menu category headings. All 4 JSON-LD blocks parse valid; 1×h1; canonical/robots unchanged._
 
-- [ ] **Step 4** — Image SEO: descriptive alt on every img; dish-based OG/Twitter image; image sitemap entries.
+- [x] **Step 4** — Image SEO: descriptive alt on every img; dish-based OG/Twitter image; image sitemap entries.
+  - _2026-06-13: Fixed 10 terse img alts (7 drink juice photos + 3 manakish: labneh/muhammara/spinach). Updated `og:image` and `twitter:image` from `og-shamiat.jpg` → `dish-mansaf.jpg` (mansaf is primary keyword dish). Added `og:image:alt` and `twitter:image:alt` tags. Added `xmlns:image` to sitemap.xml with 9 `<image:image>` entries (mansaf, mansaf mlahea, lamb chops, mixed grill, kunafa, oze lamb, fattoush, Shamiat spread, logo). All 4 JSON-LD blocks valid; 1 × h1; robots/canonical intact._
+  **Human TODO:** Verify `dish-mansaf.jpg` renders well at 1200×630 in social share previews (OG standard ratio). If portrait/square, resize or revert to a landscape food photo for OG.
 
 - [ ] **Step 5** — Neighbourhood delivery content: short entity-rich paragraphs for Trade Centre, DIFC, Downtown Dubai, Business Bay.
 
