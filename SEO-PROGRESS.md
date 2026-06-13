@@ -5,7 +5,9 @@
 - [x] **Step 1** — Verify/strengthen LocalBusiness schema (geo, hours, areaServed towers, hasMenu, acceptsReservations, payment) + FAQPage + visible FAQ + llms.txt local facts + sitemap freshness.
   - _2026-06-12: geo ✓, hours ✓, hasMenu ✓, acceptsReservations ✓, paymentAccepted ✓, FAQPage (6 Q) ✓, visible FAQ ✓, sitemap lastmod ✓. Added 14 tower/neighbourhood entries to areaServed (19 total) and added nearby-towers section to llms.txt._
 
-- [ ] **Step 2** — Google Maps embed in the contact/visit area; NAP consistency across page+schema+llms; attributed Review entries (real text only, else TODO).
+- [x] **Step 2** — Google Maps embed in the contact/visit area; NAP consistency across page+schema+llms; attributed Review entries (real text only, else TODO).
+  _2026-06-13: Added dark-styled Google Maps iframe (coords 25.22885,55.286282, zoom 17) in visit section. Added missing `og:url` meta tag (NAP/URL consistency). Updated sitemap lastmod to 2026-06-13. NAP verified consistent across page, schema, llms.txt. All 3 JSON-LD blocks valid; 1 × h1; robots/canonical/OG intact._
+  **Human TODO:** No real review text/URLs available — add attributed `Review` entries to Restaurant schema once you have verified Google/Talabat review text and URLs. (Do not fabricate.)
 
 - [ ] **Step 3** — Menu/MenuItem schema for top dishes + a definitional AEO first-sentence under each menu category heading.
 
