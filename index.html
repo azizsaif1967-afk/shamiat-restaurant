@@ -441,6 +441,7 @@
   .faq-item[open] summary::before{content:"–"}
   .faq-a{font-size:.96rem;color:var(--silver);line-height:1.7;padding:0 0 18px 30px}
   .faq-a a{color:var(--gold-l)}
+  .cat-def{font-size:.88rem;color:var(--silver-2);margin:0 0 16px;line-height:1.6;max-width:760px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://shamiatrestaurant.com/"},{"@type":"ListItem","position":2,"name":"Shamiat Restaurant","item":"https://shamiatrestaurant.com/"}]}
@@ -456,6 +457,50 @@
     {"@type":"Question","name":"Are you open now? What are the opening hours?","acceptedAnswer":{"@type":"Answer","text":"Shamiat is open every day from 12:00 PM until 5:00 AM — a late-night home for Shami food in Dubai, ideal after work, after a night out, or for a long family dinner."}},
     {"@type":"Question","name":"Do you deliver Syrian food near Trade Centre and Sheikh Zayed Road?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can order Shamiat for delivery across the Trade Centre and Sheikh Zayed Road area on Talabat, noon, Keeta, Smiles, Deliveroo and Careem, or call +971 54 781 6266 for takeaway."}},
     {"@type":"Question","name":"Do you take reservations or cater events?","acceptedAnswer":{"@type":"Answer","text":"Yes. To reserve a table, message Shamiat on WhatsApp or call +971 54 781 6266. Shamiat also caters weddings, majlis gatherings and corporate events across Dubai."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Menu",
+  "@id":"https://shamiatrestaurant.com/#menu",
+  "name":"Shamiat Restaurant Menu",
+  "url":"https://shamiatrestaurant.com/menu/shamiat-menu.pdf",
+  "hasMenuSection":[
+    {
+      "@type":"MenuSection",
+      "name":"Shamiat Specials",
+      "description":"Slow-cooked Damascene mains served daily at Duja Tower, Sheikh Zayed Road, Dubai.",
+      "hasMenuItem":[
+        {"@type":"MenuItem","name":"Mansaf Mlahea","description":"Bulgur, jameed, fried kibbeh & lamb — the definitive Shamiat signature.","offers":{"@type":"Offer","price":"65","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Jordanian Mansaf","description":"Rice, jameed yogurt and tender lamb.","offers":{"@type":"Offer","price":"65","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Oze Lamb Special","description":"Rice with minced meat, green peas and lamb neck; yogurt on the side.","offers":{"@type":"Offer","price":"75","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Kibbeh in Laban","description":"4 fried kibbeh in warm yogurt, garlic and coriander, with rice.","offers":{"@type":"Offer","price":"60","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Shish Barak","description":"Dumplings in warm yogurt, garlic and oil, with rice.","offers":{"@type":"Offer","price":"60","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Musakhan Chicken","description":"Sumac, caramelised onion, almonds, pomegranate and taboon bread.","offers":{"@type":"Offer","price":"56","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"}
+      ]
+    },
+    {
+      "@type":"MenuSection",
+      "name":"From the Charcoal Grill",
+      "description":"Mangal-style charcoal grills made to order at Shamiat Restaurant, Sheikh Zayed Road.",
+      "hasMenuItem":[
+        {"@type":"MenuItem","name":"Lamb Chops","description":"5 pieces char-grilled lamb chops, served with fries.","offers":{"@type":"Offer","price":"99","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Mixed Grill","description":"Kabab, meat and chicken skewers, fries and garlic — a sharing platter.","offers":{"@type":"Offer","price":"83","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Grilled Salmon","description":"Salmon fillet with herbs and olive oil.","offers":{"@type":"Offer","price":"95","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"}
+      ]
+    },
+    {
+      "@type":"MenuSection",
+      "name":"Mezze & Appetizers",
+      "description":"Cold and hot mezze starters served with fresh Arabic bread at Shamiat.",
+      "hasMenuItem":[
+        {"@type":"MenuItem","name":"Fattah with Meat & Pine Nuts","description":"Fried eggplant, chickpeas, meat cubes, toasted bread and tahini sauce.","offers":{"@type":"Offer","price":"45","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Family Mix Mezze","description":"A generous sharing platter of mixed cold and hot mezze.","offers":{"@type":"Offer","price":"59","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"},
+        {"@type":"MenuItem","name":"Shamiat Kunafa","description":"Cheese pastry in syrup, topped with crushed pistachio — made in-house.","offers":{"@type":"Offer","price":"25","priceCurrency":"AED"},"suitableForDiet":"https://schema.org/HalalDiet"}
+      ]
+    }
   ]
 }
 </script>
@@ -576,6 +621,7 @@
     <!-- SALADS & APPETIZERS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Salads &amp; Appetizers</h3><span class="ar">مقبلات</span><span class="ct">Served with fresh bread</span></div>
+      <p class="cat-def">Shamiat's mezze selection covers cold vegetable salads, creamy dips and hot starters — from tabbouleh and fattoush to hummus, mutabal and fried kibbeh — all served with fresh Arabic bread.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-fattoush.jpg" alt="Fattoush" loading="lazy"></div><div class="dish-b"><h4>Fattoush <span class="price">29<span class="cur"> AED</span></span></h4><p>Lettuce, tomato, sumac, pomegranate molasses, fried bread.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-tabbouleh.jpg" alt="Tabbouleh" loading="lazy"></div><div class="dish-b"><h4>Tabbouleh <span class="price">29<span class="cur"> AED</span></span></h4><p>Parsley, tomato, onion, bulgur, olive oil, lemon.</p></div></article>
@@ -598,6 +644,7 @@
     <!-- SOUPS & FATTAH -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Soups &amp; Fattah</h3><span class="ar">شوربات وفتّة</span><span class="ct">Warm &amp; comforting</span></div>
+      <p class="cat-def">Fattah (فتّة) is a classic Damascene layered dish of toasted bread, chickpeas and tahini sauce — Shamiat serves it plain, with fried eggplant, or topped with sautéed meat and pine nuts.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-lentil-soup.jpg" alt="Lentil Soup" loading="lazy"></div><div class="dish-b"><h4>Lentil Soup <span class="price">20<span class="cur"> AED</span></span></h4><p>Classic Shami red-lentil soup.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-chicken-soup.jpg" alt="Chicken Soup" loading="lazy"></div><div class="dish-b"><h4>Chicken Soup <span class="price">20<span class="cur"> AED</span></span></h4><p>Light, warming chicken broth.</p></div></article>
@@ -611,6 +658,7 @@
     <!-- CHARCOAL GRILL -->
     <div class="menu-cat reveal" id="grill">
       <div class="cat-bar"><h3>From the Charcoal Grill</h3><span class="ar">على الفحم</span><span class="ct">Mangal · made to order</span></div>
+      <p class="cat-def">Every kebab and grill at Shamiat is cooked over real charcoal (mangal-style), giving the lamb chops, mixed grill and shish tawook their distinctive smoky char — all halal, made to order.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-lamb-chops.jpg" alt="Lamb Chops" loading="lazy"></div><div class="dish-b"><h4>Lamb Chops <span class="price">99<span class="cur"> AED</span></span></h4><p>5 pieces char-grilled lamb chops, fries.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/1000316061.jpg" alt="Lamb Shank" loading="lazy"></div><div class="dish-b"><h4>Lamb Shank <span class="price">90<span class="cur"> AED</span></span></h4><p>Slow-cooked shank, mashed potato, vegetables.</p></div></article>
@@ -626,6 +674,7 @@
     <!-- SEAFOOD -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Seafood</h3><span class="ar">مأكولات بحرية</span><span class="ct">Lemon &amp; garlic sauce</span></div>
+      <p class="cat-def">Shamiat's seafood dishes are grilled fresh with herbs, lemon and garlic — including grilled salmon, shrimp and the catch of the day, all served with rice.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/1000316064.jpg" alt="Grilled fish" loading="lazy"></div><div class="dish-b"><h4>Grilled Seafood <span class="price">85<span class="cur"> AED</span></span></h4><p>Catch of the day, lemon &amp; garlic sauce, rice.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-grilled-salmon.jpg" alt="Grilled Salmon" loading="lazy"></div><div class="dish-b"><h4>Grilled Salmon <span class="price">95<span class="cur"> AED</span></span></h4><p>Salmon fillet, herbs &amp; olive oil.</p></div></article>
@@ -636,6 +685,7 @@
     <!-- SHAMIAT SPECIALS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Shamiat Specials</h3><span class="ar">أطباق شامية</span><span class="ct">Slow-cooked &amp; traditional</span></div>
+      <p class="cat-def">Shamiat Specials are the slow-cooked Damascene mains the restaurant is known for: mansaf with jameed yogurt, oze lamb on rice, kibbeh in laban and shish barak dumplings in yogurt sauce — all 100% halal.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/1000316078.jpg" alt="Musakhan chicken" loading="lazy"></div><div class="dish-b"><h4>Musakhan Chicken <span class="price">56<span class="cur"> AED</span></span></h4><p>Sumac, caramelised onion, almonds, pomegranate, taboon bread.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-oze-lamb.jpg" alt="Oze Lamb Special" loading="lazy"></div><div class="dish-b"><h4>Oze Lamb Special <span class="price">75<span class="cur"> AED</span></span></h4><p>Rice with minced meat, green peas, lamb neck; yogurt on the side.</p></div></article>
@@ -654,6 +704,7 @@
     <!-- FAKHARA FROM THE OVEN -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Fakhara from the Oven</h3><span class="ar">فخارة</span><span class="ct">Baked in clay pots</span></div>
+      <p class="cat-def">Fakhara dishes are baked in traditional clay pots straight from the oven — baked eggs with awarma or sujok, kufta in tomato or tahini, lamb tongues and roasted bone marrow.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/1000316070.jpg" alt="Eggs with kawarma" loading="lazy"></div><div class="dish-b"><h4>Eggs with Kawarma <span class="price">45<span class="cur"> AED</span></span></h4><p>Baked eggs with cured lamb awarma.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-eggs-sujok.jpg" alt="Eggs with Sujok" loading="lazy"></div><div class="dish-b"><h4>Eggs with Sujok <span class="price">45<span class="cur"> AED</span></span></h4><p>Baked eggs with spiced sujok.</p></div></article>
@@ -671,6 +722,7 @@
     <!-- MANAKEESH & BAKERY -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Manakeesh &amp; Bakery</h3><span class="ar">مناقيش</span><span class="ct">Baked fresh to order</span></div>
+      <p class="cat-def">Manakeesh (مناقيش) are Syrian flatbreads baked fresh to order with toppings such as zaatar, labneh, cheese, spinach or Shamiat's signature akkawi and mozzarella blend — perfect for breakfast or a light bite.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-manakish-zaatar.jpg" alt="Zaatar" loading="lazy"></div><div class="dish-b"><h4>Zaatar <span class="price">12<span class="cur"> AED</span></span></h4><p>Wild thyme, tomato, onion.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-cheese-thyme.jpg" alt="Cheese with Thyme" loading="lazy"></div><div class="dish-b"><h4>Cheese with Thyme <span class="price">21<span class="cur"> AED</span></span></h4><p>Thyme &amp; mozzarella.</p></div></article>
@@ -688,6 +740,7 @@
     <!-- BURGERS & SANDWICHES -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Burgers &amp; Sandwiches</h3><span class="ar">سندويشات</span><span class="ct">Wrapped &amp; rolled</span></div>
+      <p class="cat-def">Quick bites and wraps including chicken shawarma, musakhan sandwich, falafel wrap, kebab roll and grilled halloumi — available for dine-in or takeaway from Sheikh Zayed Road.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-burger.jpg" alt="Burger (Beef / Chicken)" loading="lazy"></div><div class="dish-b"><h4>Burger (Beef / Chicken) <span class="price">33 / 36<span class="cur"> AED</span></span></h4><p>Lettuce, pickles, tomato, cheddar, cocktail sauce.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-chicken-shawarma.jpg" alt="Chicken Shawarma" loading="lazy"></div><div class="dish-b"><h4>Chicken Shawarma <span class="price">30 / 22<span class="cur"> AED</span></span></h4><p>Chicken, garlic sauce, pickles.</p></div></article>
@@ -704,6 +757,7 @@
     <!-- PIZZA -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Pizza</h3><span class="ar">بيتزا</span><span class="ct">Wood-fired</span></div>
+      <p class="cat-def">Shamiat's halal pizzas are wood-fired with toppings including margarita, beef pepperoni, BBQ chicken, mixed vegetables and house galzony — starting from 35 AED.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-pizza-margarita.jpg" alt="Margarita" loading="lazy"></div><div class="dish-b"><h4>Margarita <span class="price">35<span class="cur"> AED</span></span></h4><p>Tomato, mozzarella, basil.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-pizza-pepperoni.jpg" alt="Pepperoni" loading="lazy"></div><div class="dish-b"><h4>Pepperoni <span class="price">45<span class="cur"> AED</span></span></h4><p>Beef pepperoni &amp; cheese.</p></div></article>
@@ -716,6 +770,7 @@
     <!-- DESSERTS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Sweets</h3><span class="ar">حلويات</span><span class="ct">Made in-house</span></div>
+      <p class="cat-def">Shamiat makes kunafa in-house — a hot cheese pastry in syrup topped with crushed pistachio — alongside lazaqiat (sweet fried dough in syrup), rice pudding and seasonal sweets.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-kunafa.jpg" alt="Shamiat Kunafa" loading="lazy"></div><div class="dish-b"><h4>Shamiat Kunafa <span class="price">25<span class="cur"> AED</span></span></h4><p>Cheese pastry, syrup &amp; pistachio.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-kunafa-icecream.jpg" alt="Kunafa Ice Cream" loading="lazy"></div><div class="dish-b"><h4>Kunafa Ice Cream <span class="price">25<span class="cur"> AED</span></span></h4><p>Warm kunafa with ice cream.</p></div></article>
@@ -728,6 +783,7 @@
     <!-- DRINKS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Drinks</h3><span class="ar">مشروبات</span><span class="ct">Fresh juices, cold &amp; hot</span></div>
+      <p class="cat-def">The Shamiat drinks menu runs from fresh-pressed juices — pomegranate, avocado, lemon-mint — to hot coffee and traditional ayran yogurt drink, plus tea and herbal infusions.</p>
       <div class="dish-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-cocktail-juice.jpg" alt="My Cocktail" loading="lazy"></div><div class="dish-b"><h4>My Cocktail <span class="price">29<span class="cur"> AED</span></span></h4><p>House mixed-fruit cocktail.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-avocado-juice.jpg" alt="Avocado" loading="lazy"></div><div class="dish-b"><h4>Avocado <span class="price">29<span class="cur"> AED</span></span></h4><p>Fresh avocado shake.</p></div></article>
