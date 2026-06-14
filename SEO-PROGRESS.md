@@ -16,7 +16,8 @@
   - _2026-06-13: Fixed 10 terse img alts (7 drink juice photos + 3 manakish: labneh/muhammara/spinach). Updated `og:image` and `twitter:image` from `og-shamiat.jpg` → `dish-mansaf.jpg` (mansaf is primary keyword dish). Added `og:image:alt` and `twitter:image:alt` tags. Added `xmlns:image` to sitemap.xml with 9 `<image:image>` entries (mansaf, mansaf mlahea, lamb chops, mixed grill, kunafa, oze lamb, fattoush, Shamiat spread, logo). All 4 JSON-LD blocks valid; 1 × h1; robots/canonical intact._
   **Human TODO:** Verify `dish-mansaf.jpg` renders well at 1200×630 in social share previews (OG standard ratio). If portrait/square, resize or revert to a landscape food photo for OG.
 
-- [ ] **Step 5** — Neighbourhood delivery content: short entity-rich paragraphs for Trade Centre, DIFC, Downtown Dubai, Business Bay.
+- [x] **Step 5** — Neighbourhood delivery content: short entity-rich paragraphs for Trade Centre, DIFC, Downtown Dubai, Business Bay.
+  _2026-06-14: Added `#near-me` section with 4 entity-rich cards (Trade Centre & SZR towers, DIFC & Emirates Towers, Downtown Dubai & One Central, Business Bay). Each card names specific tower buildings, delivery platforms, dishes and hours — targeting "restaurant near [tower]" and "delivery to [neighbourhood]" queries. Added matching CSS (.nbh-grid/.nbh-card). All 4 JSON-LD blocks valid; 1 × h1; robots/canonical unchanged._
 
 - [ ] **Step 6** — Speakable schema + 3-4 more long-tail near-me FAQ entries (visible + schema).
 
