@@ -19,7 +19,8 @@
 - [x] **Step 5** — Neighbourhood delivery content: short entity-rich paragraphs for Trade Centre, DIFC, Downtown Dubai, Business Bay.
   _2026-06-14: Added `#near-me` section with 4 entity-rich cards (Trade Centre & SZR towers, DIFC & Emirates Towers, Downtown Dubai & One Central, Business Bay). Each card names specific tower buildings, delivery platforms, dishes and hours — targeting "restaurant near [tower]" and "delivery to [neighbourhood]" queries. Added matching CSS (.nbh-grid/.nbh-card). All 4 JSON-LD blocks valid; 1 × h1; robots/canonical unchanged._
 
-- [ ] **Step 6** — Speakable schema + 3-4 more long-tail near-me FAQ entries (visible + schema).
+- [x] **Step 6** — Speakable schema + 3-4 more long-tail near-me FAQ entries (visible + schema).
+  _2026-06-15: Added WebPage schema with SpeakableSpecification (cssSelector: #faq, section.hero h1, section.hero .lede). Expanded FAQPage from 6 → 10 questions with 4 new long-tail entries: "kebab near me SZR", "mansaf near me Dubai", "best restaurant near Duja Tower", "halal food open late SZR". Matching visible FAQ items added (10 total). All 5 JSON-LD blocks valid; 1 × h1; robots/canonical intact._
 
 - [ ] **Step 7** — E-E-A-T: Google Maps & Talabat review links; sameAs to Google Business Profile + Talabat store (real URLs only).
   - _TODO (human): Find and supply the real Google Business Profile URL for Shamiat Restaurant to add as a sameAs entry._
