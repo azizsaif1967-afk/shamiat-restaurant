@@ -517,6 +517,65 @@
   </div>
 </section>
 
+<!-- CINEMATIC REEL (full-bleed) -->
+<style>
+  .cinreel{position:relative;width:100%;height:100vh;min-height:560px;background:#080604;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .cinreel .cin-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);filter:blur(26px) brightness(.42) saturate(1.1);pointer-events:none}
+  .cinreel .cin-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 42%,transparent 40%,rgba(8,6,4,.55) 100%),linear-gradient(180deg,rgba(8,6,4,.5) 0%,transparent 22% 70%,rgba(8,6,4,.92) 100%)}
+  .cinreel .cin-stage{position:relative;z-index:2;height:100%;aspect-ratio:9/16;max-width:94vw;display:flex;align-items:center;justify-content:center}
+  .cinreel .cin-video{width:100%;height:100%;object-fit:cover;border-radius:0;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+  @media(min-width:760px){.cinreel .cin-stage{height:92vh}.cinreel .cin-video{border-radius:20px;border:1px solid rgba(217,168,108,.22)}}
+  .cinreel .cin-cap{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:34px 26px 30px;text-align:center;pointer-events:none}
+  .cinreel .cin-cap .ar{font-size:1.05rem;color:var(--gold);letter-spacing:.02em;margin-bottom:6px;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+  .cinreel .cin-cap h2{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:800;line-height:1.04;margin:0 0 8px;color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.9)}
+  .cinreel .cin-cap .pr{display:inline-block;font-family:var(--label);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 16px;background:rgba(8,6,4,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .cin-sound{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:4;display:inline-flex;align-items:center;gap:9px;padding:11px 18px 11px 14px;border:none;border-radius:999px;background:rgba(15,12,10,.62);color:#fff;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 22px rgba(0,0,0,.4);transition:background .2s,transform .15s}
+  .cin-sound:hover{background:rgba(15,12,10,.85);transform:translateX(-50%) translateY(-1px)}
+  .cin-sound[aria-pressed="true"]{background:var(--terra,#b4542e)}
+  .cin-sound svg{width:19px;height:19px;flex:0 0 auto}
+  @media(max-width:759px){.cinreel .cin-cap{bottom:74px}}
+</style>
+<section class="cinreel" id="reel" aria-label="Shamiat signature reel">
+  <video class="cin-bg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="videos/shamiat-reel.mp4" type="video/mp4">
+  </video>
+  <div class="cin-scrim"></div>
+  <div class="cin-stage">
+    <video id="cinVideo" class="cin-video" autoplay muted loop playsinline preload="auto" poster="images/1000316074.jpg" aria-label="Sausages &amp; Tongues — Shamiat signature reel">
+      <source src="videos/shamiat-reel.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="cin-cap">
+    <div class="ar">مقادم ولسانات</div>
+    <h2>Sausages &amp; Tongues</h2>
+    <span class="pr">Damascene Signature · 78 AED</span>
+  </div>
+  <button class="cin-sound" id="cinSound" type="button" aria-pressed="false" aria-label="Turn on sound" title="Tap for sound">
+    <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    <svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+    <span class="cin-lbl">Tap for sound</span>
+  </button>
+</section>
+<script>
+  (function(){
+    var v=document.getElementById('cinVideo'),btn=document.getElementById('cinSound');
+    if(!v||!btn)return;
+    var on=document.querySelector('.cin-sound .ic-on'),off=document.querySelector('.cin-sound .ic-off'),lbl=document.querySelector('.cin-sound .cin-lbl');
+    btn.addEventListener('click',function(){
+      var sound=v.muted;            // becoming sound-on if currently muted
+      v.muted=!sound;
+      if(sound){v.currentTime=0;}   // restart so the audio plays from the top
+      v.play().catch(function(){});
+      btn.setAttribute('aria-pressed',sound?'true':'false');
+      btn.setAttribute('aria-label',sound?'Mute':'Turn on sound');
+      btn.title=sound?'Mute':'Tap for sound';
+      on.style.display=sound?'':'none';
+      off.style.display=sound?'none':'';
+      lbl.textContent=sound?'Sound on':'Tap for sound';
+    });
+  })();
+</script>
+
 <!-- POPULAR STRIP -->
 <div class="pop-strip">
   <div class="wrap">
