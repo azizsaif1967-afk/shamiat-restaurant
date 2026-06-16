@@ -537,12 +537,12 @@
 </style>
 <section class="cinreel" id="reel" aria-label="Shamiat signature reel">
   <video class="cin-bg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="videos/shamiat-reel.mp4" type="video/mp4">
+    <source src="shamiat-reel.mp4" type="video/mp4">
   </video>
   <div class="cin-scrim"></div>
   <div class="cin-stage">
     <video id="cinVideo" class="cin-video" autoplay muted loop playsinline preload="auto" poster="images/1000316074.jpg" aria-label="Sausages &amp; Tongues — Shamiat signature reel">
-      <source src="videos/shamiat-reel.mp4" type="video/mp4">
+      <source src="shamiat-reel.mp4" type="video/mp4">
     </video>
   </div>
   <div class="cin-cap">
@@ -613,33 +613,6 @@
   </div>
   <div class="sig-hint">↔ Drag · or just watch</div>
 </section>
-
-<!-- DISH REEL — autoplaying 12s montage of the real signature dishes -->
-<section class="reelsec" id="reel">
-  <div class="wrap sig-head reveal">
-    <span class="kicker">Watch · 12 seconds</span>
-    <h2>A taste of <em>Shamiat</em></h2>
-    <p>Our real signature dishes, shot in our own kitchen — with Arabic narration. Tap for sound.</p>
-  </div>
-  <div class="reel-box reveal">
-    <video id="dishReel" src="shamiat-reel.mp4" poster="images/1000316061.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shamiat signature dishes reel"></video>
-    <button class="reel-unmute" id="reelUnmute" type="button" aria-label="Unmute for Arabic narration">
-      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-      <span id="reelUnmuteTxt">Tap for sound</span>
-    </button>
-  </div>
-</section>
-<script>
-(function(){
-  var v=document.getElementById('dishReel'),b=document.getElementById('reelUnmute'),t=document.getElementById('reelUnmuteTxt');
-  if(!v||!b)return;
-  b.addEventListener('click',function(){
-    v.muted=!v.muted;
-    if(!v.muted){v.currentTime=0;v.play();t.textContent='Sound on';}
-    else{t.textContent='Tap for sound';}
-  });
-})();
-</script>
 
 <!-- MENU -->
 <section class="block" id="menu">
