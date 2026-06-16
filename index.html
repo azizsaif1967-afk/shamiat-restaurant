@@ -185,6 +185,17 @@
   .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.16,1,.3,1);will-change:transform}
   .dish.ph:hover .plate img{transform:scale(1.09)}
   .dish.ph .plate::after{display:none}
+  /* floating dish cards — Signature-Plates concept (sample rollout via .fl-grid) */
+  .fl-grid .dish{position:relative;aspect-ratio:3/4;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#1A1510;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  .fl-grid .dish:hover{border-color:var(--gold);box-shadow:0 22px 50px rgba(0,0,0,.6)}
+  .fl-grid .dish .plate{position:absolute;inset:0;aspect-ratio:auto;background:none}
+  .fl-grid .dish .plate::after{display:none}
+  .fl-grid .dish::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 34%,rgba(8,6,4,.5) 60%,rgba(8,6,4,.95))}
+  .fl-grid .dish .dish-b{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 15px 15px;background:none;gap:3px}
+  .fl-grid .dish .dish-b h4{font-size:1.02rem;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+  .fl-grid .dish .dish-b p{font-size:.76rem;color:var(--silver);line-height:1.45;max-height:0;opacity:0;margin:0;overflow:hidden;transition:max-height .4s var(--ease),opacity .3s,margin-top .4s var(--ease)}
+  .fl-grid .dish:hover .dish-b p{max-height:96px;opacity:.92;margin-top:3px}
+  .fl-grid .dish .badge{z-index:3}
   .badge{position:absolute;top:8px;left:8px;z-index:2;font-family:var(--label);font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:rgba(14,11,8,.72);color:var(--gold-l);border:1px solid rgba(217,168,108,.4)}
   .badge.sig{color:var(--terra-l);border-color:rgba(196,90,61,.5)}
   .price{margin-left:auto;font-family:var(--label);font-size:.82rem;font-weight:700;color:var(--gold-l);white-space:nowrap;padding-left:8px}
@@ -633,7 +644,7 @@
     <!-- SALADS & APPETIZERS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Salads &amp; Appetizers</h3><span class="ar">مقبلات</span><span class="ct">Served with fresh bread</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-fattoush.jpg" alt="Fattoush" loading="lazy"></div><div class="dish-b"><h4>Fattoush <span class="price">29<span class="cur"> AED</span></span></h4><p>Lettuce, tomato, sumac, pomegranate molasses, fried bread.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-tabbouleh.jpg" alt="Tabbouleh" loading="lazy"></div><div class="dish-b"><h4>Tabbouleh <span class="price">29<span class="cur"> AED</span></span></h4><p>Parsley, tomato, onion, bulgur, olive oil, lemon.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-rocca-salad.jpg" alt="Rocca Salad" loading="lazy"></div><div class="dish-b"><h4>Rocca Salad <span class="price">27<span class="cur"> AED</span></span></h4><p>Rocca, mushroom, onion, tomato, sumac, pomegranate.</p></div></article>
@@ -655,7 +666,7 @@
     <!-- SOUPS & FATTAH -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Soups &amp; Fattah</h3><span class="ar">شوربات وفتّة</span><span class="ct">Warm &amp; comforting</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-lentil-soup.jpg" alt="Lentil Soup" loading="lazy"></div><div class="dish-b"><h4>Lentil Soup <span class="price">20<span class="cur"> AED</span></span></h4><p>Classic Shami red-lentil soup.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-chicken-soup.jpg" alt="Chicken Soup" loading="lazy"></div><div class="dish-b"><h4>Chicken Soup <span class="price">20<span class="cur"> AED</span></span></h4><p>Light, warming chicken broth.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-mushroom-soup.jpg" alt="Mushroom Soup" loading="lazy"></div><div class="dish-b"><h4>Mushroom Soup <span class="price">20<span class="cur"> AED</span></span></h4><p>Creamy mushroom soup.</p></div></article>
@@ -967,8 +978,19 @@
           .bk-grid label{display:flex;flex-direction:column;gap:5px;font-size:.74rem;color:var(--silver);font-weight:600}
           .bk-grid label.full{grid-column:1/-1}
           .bk-grid input{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:#fff;font-family:inherit;font-size:.92rem;width:100%}
-          .bk-grid input:focus{outline:none;border-color:var(--gold)}
+          .bk-grid input,.bk-grid select{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:12px 12px;color:#fff;font-family:inherit;font-size:.95rem;width:100%}
+          .bk-grid input:focus,.bk-grid select:focus{outline:none;border-color:var(--gold)}
           .bk-grid input::placeholder{color:var(--silver-2);opacity:.7}
+          /* tappable date — whole field opens the calendar */
+          .bk-date{position:relative;cursor:pointer}
+          .bk-date input[type=date]{cursor:pointer;color-scheme:dark;-webkit-appearance:none;appearance:none}
+          .bk-date input[type=date]::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+          .bk-date::after{content:"📅";position:absolute;right:12px;bottom:11px;font-size:1rem;pointer-events:none}
+          .bk-time{position:relative}
+          .bk-time::after{content:"🕒";position:absolute;right:12px;bottom:11px;font-size:1rem;pointer-events:none}
+          .bk-grid select{cursor:pointer;-webkit-appearance:none;appearance:none;color-scheme:dark;padding-right:34px}
+          .bk-grid select:invalid{color:var(--silver-2)}
+          .bk-grid select option{background:#1a1a1a;color:#fff}
           .bk-submit{width:100%;justify-content:center;margin-top:2px}
         </style>
         <form class="bk-form" id="bookForm" novalidate>
@@ -976,8 +998,12 @@
           <div class="bk-grid">
             <label class="full">Name<input name="name" required autocomplete="name" placeholder="Your name"></label>
             <label class="full">Mobile<input name="mobile" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+971 5x xxx xxxx"></label>
-            <label>Date<input name="date" type="date" required></label>
-            <label>Time<input name="time" type="time" required></label>
+            <label class="full bk-date">Date<input name="date" type="date" required></label>
+            <label class="full bk-time">Time
+              <select name="time" required>
+                <option value="" disabled selected>Tap to pick a time</option>
+              </select>
+            </label>
             <label class="full">Guests<input name="guests" type="number" min="1" max="50" required inputmode="numeric" placeholder="Number of guests"></label>
           </div>
           <button class="btn primary bk-submit" type="submit">💬 Send booking on WhatsApp</button>
@@ -986,19 +1012,38 @@
           (function(){
             var f=document.getElementById('bookForm'); if(!f)return;
             var PH='971547816266';
-            var dt=f.querySelector('input[name=date]'); if(dt){var n=new Date();dt.min=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');}
+            var dt=f.querySelector('input[name=date]'); if(dt){var n=new Date();dt.min=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+              // tapping anywhere on the date field opens the calendar
+              dt.addEventListener('focus',function(){try{dt.showPicker&&dt.showPicker();}catch(e){}});
+              dt.addEventListener('click',function(){try{dt.showPicker&&dt.showPicker();}catch(e){}});
+            }
+            // build bookable time slots (kitchen open 12:00 PM – 5:00 AM), every 30 min
+            var sel=f.querySelector('select[name=time]');
+            if(sel){
+              for(var t=720;t<=1710;t+=30){               // 720=12:00, 1710=04:30 (next day)
+                var h24=Math.floor(t/60)%24, m=t%60;
+                var hh=String(h24).padStart(2,'0')+':'+String(m).padStart(2,'0'); // 24h value
+                var h12=h24%12; if(h12===0)h12=12;
+                var ap=h24<12?'AM':'PM';
+                var label=h12+':'+String(m).padStart(2,'0')+' '+ap;              // shown text
+                var o=document.createElement('option'); o.value=hh; o.textContent=label; sel.appendChild(o);
+              }
+            }
             f.addEventListener('submit',function(e){
               e.preventDefault();
               if(!f.reportValidity())return;            // collect all details before sending
               var g=function(k){return (new FormData(f).get(k)||'').toString().trim();};
               var name=g('name'),mobile=g('mobile'),date=g('date'),time=g('time'),guests=g('guests');
               if(!name||!mobile||!date||!time||!guests)return;
+              // friendly versions for the WhatsApp message
+              var timeTxt=(sel&&sel.selectedOptions[0])?sel.selectedOptions[0].textContent:time;
+              var dateTxt=date; try{var d=new Date(date+'T00:00');dateTxt=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});}catch(e){}
               var msg='Hi Shamiat, I’d like to book a table.'
                 +'\nName: '+name
                 +'\nMobile: '+mobile
                 +'\nGuests: '+guests
-                +'\nDate: '+date
-                +'\nTime: '+time;
+                +'\nDate: '+dateTxt
+                +'\nTime: '+timeTxt;
               window.open('https://wa.me/'+PH+'?text='+encodeURIComponent(msg),'_blank','noopener');
             });
           })();
