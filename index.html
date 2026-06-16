@@ -965,7 +965,49 @@
           <div class="hr"><b>Kitchen</b><span>Open late, daily</span></div>
         </div>
         <p style="margin-top:16px;font-size:.86rem;color:var(--silver-2);line-height:1.6">A late-night home for Shami food in Dubai — perfect after work, after a night out, or for a long family dinner. Live hours are on Google &amp; the delivery apps.</p>
-        <a class="btn primary" style="width:100%;justify-content:center;margin-top:14px" href="https://wa.me/971547816266?text=Hi%20Shamiat%2C%20I%27d%20like%20to%20book%20a%20table." target="_blank" rel="noopener">💬 Reserve a table on WhatsApp</a>
+        <style>
+          .bk-form{margin-top:18px}
+          .bk-form .bk-lbl{font-family:var(--label);font-size:.66rem;color:var(--silver-2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+          .bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+          .bk-grid label{display:flex;flex-direction:column;gap:5px;font-size:.74rem;color:var(--silver);font-weight:600}
+          .bk-grid label.full{grid-column:1/-1}
+          .bk-grid input{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:#fff;font-family:inherit;font-size:.92rem;width:100%}
+          .bk-grid input:focus{outline:none;border-color:var(--gold)}
+          .bk-grid input::placeholder{color:var(--silver-2);opacity:.7}
+          .bk-submit{width:100%;justify-content:center;margin-top:2px}
+        </style>
+        <form class="bk-form" id="bookForm" novalidate>
+          <div class="bk-lbl">Reserve a table</div>
+          <div class="bk-grid">
+            <label class="full">Name<input name="name" required autocomplete="name" placeholder="Your name"></label>
+            <label class="full">Mobile<input name="mobile" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+971 5x xxx xxxx"></label>
+            <label>Date<input name="date" type="date" required></label>
+            <label>Time<input name="time" type="time" required></label>
+            <label class="full">Guests<input name="guests" type="number" min="1" max="50" required inputmode="numeric" placeholder="Number of guests"></label>
+          </div>
+          <button class="btn primary bk-submit" type="submit">💬 Send booking on WhatsApp</button>
+        </form>
+        <script>
+          (function(){
+            var f=document.getElementById('bookForm'); if(!f)return;
+            var PH='971547816266';
+            var dt=f.querySelector('input[name=date]'); if(dt){var n=new Date();dt.min=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');}
+            f.addEventListener('submit',function(e){
+              e.preventDefault();
+              if(!f.reportValidity())return;            // collect all details before sending
+              var g=function(k){return (new FormData(f).get(k)||'').toString().trim();};
+              var name=g('name'),mobile=g('mobile'),date=g('date'),time=g('time'),guests=g('guests');
+              if(!name||!mobile||!date||!time||!guests)return;
+              var msg='Hi Shamiat, I’d like to book a table.'
+                +'\nName: '+name
+                +'\nMobile: '+mobile
+                +'\nGuests: '+guests
+                +'\nDate: '+date
+                +'\nTime: '+time;
+              window.open('https://wa.me/'+PH+'?text='+encodeURIComponent(msg),'_blank','noopener');
+            });
+          })();
+        </script>
       </div>
     </div>
   </div>
@@ -1246,7 +1288,7 @@
     if(has(w,['deliver','delivery','talabat','deliveroo','noon','careem','smiles','keeta','takeaway','online']))
       return "🛵 Order Shamiat on <b>Talabat, Deliveroo, noon, Careem, Smiles & Keeta</b>.\n"+jmp('order','See all order links ↓');
     if(has(w,['reserve','reservation','book','booking','table']))
-      return "To reserve a table, message us on "+lnk(WA+'?text=Hi%20Shamiat%2C%20I%27d%20like%20to%20book%20a%20table.','WhatsApp')+" or call "+PH+". 🍽️";
+      return "Happy to help you book a table! 🍽️ Fill in the quick form — name, mobile, guests, date &amp; time — and it sends straight to us on WhatsApp.\n"+jmp('order','Book a table ↓')+" · or call "+PH+".";
     if(has(w,['cater','catering','event','events','wedding','party','majlis','iftar','banquet','corporate','buffet']))
       return "🎉 We cater weddings, majlis, corporate events, iftars and more across Dubai.\n"+jmp('catering','See catering ↓')+" · "+lnk(WA+'?text=Hi%20Shamiat%2C%20I%27d%20like%20a%20catering%20quote.','WhatsApp the team');
     if(has(w,['phone','call','contact','number','whatsapp']))
