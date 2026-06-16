@@ -22,8 +22,9 @@
 - [x] **Step 6** — Speakable schema + 3-4 more long-tail near-me FAQ entries (visible + schema).
   _2026-06-15: Added WebPage schema with SpeakableSpecification (cssSelector: #faq, section.hero h1, section.hero .lede). Expanded FAQPage from 6 → 10 questions with 4 new long-tail entries: "kebab near me SZR", "mansaf near me Dubai", "best restaurant near Duja Tower", "halal food open late SZR". Matching visible FAQ items added (10 total). All 5 JSON-LD blocks valid; 1 × h1; robots/canonical intact._
 
-- [ ] **Step 7** — E-E-A-T: Google Maps & Talabat review links; sameAs to Google Business Profile + Talabat store (real URLs only).
-  - _TODO (human): Find and supply the real Google Business Profile URL for Shamiat Restaurant to add as a sameAs entry._
+- [x] **Step 7** — E-E-A-T: Google Maps & Talabat review links; sameAs to Google Business Profile + Talabat store (real URLs only).
+  - _2026-06-16: Expanded sameAs from 3 → 5 entries: added Talabat store URL (https://www.talabat.com/uae/restaurant/637743/...) and Deliveroo URL (https://deliveroo.ae/menu/dubai/sheikh-zayed/shamiat-restaurant) — both real verified URLs already used in the page. Added visible "Reviews & ratings · 4.5★ from 1,300+" row in visit/get-in-touch section with links to Google Maps listing and Talabat store. All 5 JSON-LD blocks valid; 1 × h1; canonical/robots intact._
+  - **Human TODO:** Replace the Google Maps search URL in the "Google reviews" link with the direct Google Business Profile URL (e.g. https://g.page/r/YOUR_PLACE_ID/review) once you have it from Google Business. Also add it to sameAs. Comment in the HTML marks the exact spot.
 
 - [ ] **Step 8** — Core Web Vitals: img width/height, preload LCP image, lazy below-the-fold, defer non-critical JS.
 
