@@ -26,7 +26,8 @@
   - _2026-06-16: Expanded sameAs from 3 → 5 entries: added Talabat store URL (https://www.talabat.com/uae/restaurant/637743/...) and Deliveroo URL (https://deliveroo.ae/menu/dubai/sheikh-zayed/shamiat-restaurant) — both real verified URLs already used in the page. Added visible "Reviews & ratings · 4.5★ from 1,300+" row in visit/get-in-touch section with links to Google Maps listing and Talabat store. All 5 JSON-LD blocks valid; 1 × h1; canonical/robots intact._
   - **Human TODO:** Replace the Google Maps search URL in the "Google reviews" link with the direct Google Business Profile URL (e.g. https://g.page/r/YOUR_PLACE_ID/review) once you have it from Google Business. Also add it to sameAs. Comment in the HTML marks the exact spot.
 
-- [ ] **Step 8** — Core Web Vitals: img width/height, preload LCP image, lazy below-the-fold, defer non-critical JS.
+- [x] **Step 8** — Core Web Vitals: img width/height, preload LCP image, lazy below-the-fold, defer non-critical JS.
+  _2026-06-16: Added `<link rel="preload" as="image" href="images/hero-poster.jpg" fetchpriority="high">` in `<head>` (after preconnect hints) to preload the hero video poster — the LCP element on first paint. Added `fetchpriority="high"` to the intro-splash logo and nav brand-img (both above-fold). Added `loading="lazy"` to the footer logo (below-fold). No external scripts in the page — all JS is inline, so no defer/async needed. Dish `<img>` tags inside CSS `aspect-ratio:4/3` containers already have CLS controlled by the container. 1 × h1; robots/canonical intact._
 
 - [ ] **Step 9** — Arabic bilingual near-me keywords + short Arabic FAQ (مطعم سوري قريب مني، مطعم عربي شارع الشيخ زايد).
 
