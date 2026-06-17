@@ -29,6 +29,7 @@
 - [x] **Step 8** — Core Web Vitals: img width/height, preload LCP image, lazy below-the-fold, defer non-critical JS.
   _2026-06-16: Added `<link rel="preload" as="image" href="images/hero-poster.jpg" fetchpriority="high">` in `<head>` (after preconnect hints) to preload the hero video poster — the LCP element on first paint. Added `fetchpriority="high"` to the intro-splash logo and nav brand-img (both above-fold). Added `loading="lazy"` to the footer logo (below-fold). No external scripts in the page — all JS is inline, so no defer/async needed. Dish `<img>` tags inside CSS `aspect-ratio:4/3` containers already have CLS controlled by the container. 1 × h1; robots/canonical intact._
 
-- [ ] **Step 9** — Arabic bilingual near-me keywords + short Arabic FAQ (مطعم سوري قريب مني، مطعم عربي شارع الشيخ زايد).
+- [x] **Step 9** — Arabic bilingual near-me keywords + short Arabic FAQ (مطعم سوري قريب مني، مطعم عربي شارع الشيخ زايد).
+  _2026-06-17: Extended `<meta name="keywords">` with 6 Arabic near-me terms (مطعم سوري قريب مني, مطعم عربي قريب مني, مطعم حلال دبي, مشاوي قريب مني دبي, مطعم شامي دبي, مطعم لبناني شارع الشيخ زايد). Added 4 Arabic Q&As to FAQPage schema (14 questions total). Added visible Arabic FAQ subsection (dir="rtl" lang="ar") with 4 items: مطعم سوري قريب مني، مطعم عربي SZR، مشاوي DWTC، أوقات العمل. Sitemap lastmod → 2026-06-17. All 5 JSON-LD blocks valid; 1 × h1; robots/canonical/OG intact._
 
 - [ ] **Step 10** — Full re-audit: validate all JSON-LD, confirm rich-result eligibility (Restaurant, FAQ, Breadcrumb), fix regressions, write a final summary atop SEO-PROGRESS.md.
