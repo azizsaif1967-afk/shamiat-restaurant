@@ -114,6 +114,18 @@
   nav.rest ul a:hover{color:var(--gold-l)}
   nav.rest .book{background:var(--gold);color:var(--ink);padding:9px 18px;border-radius:99px;font-weight:700;letter-spacing:.02em}
   nav.rest .book:hover{background:var(--gold-l)}
+  /* Menu dropdown */
+  nav.rest .has-drop{position:relative}
+  nav.rest .has-drop>a{display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+  nav.rest .has-drop>a .caret{font-size:.6rem;transition:transform .2s}
+  nav.rest .has-drop:hover>a .caret,nav.rest .has-drop:focus-within>a .caret{transform:rotate(180deg)}
+  nav.rest .drop{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:188px;background:rgba(14,11,8,.96);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px;box-shadow:0 22px 54px rgba(0,0,0,.55);padding:8px;margin:0;list-style:none;display:flex;flex-direction:column;gap:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s}
+  nav.rest .has-drop:hover .drop,nav.rest .has-drop:focus-within .drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(4px)}
+  nav.rest .drop li{display:block}
+  nav.rest .drop a{display:block;padding:9px 14px;border-radius:9px;font-size:.82rem;white-space:nowrap;color:var(--silver);transition:background .15s,color .15s}
+  nav.rest .drop a:hover{background:rgba(217,168,108,.12);color:var(--gold-l)}
+  nav.rest .drop .drop-sep{height:1px;background:var(--line);margin:6px 8px}
+  nav.rest .drop .drop-lbl{font-family:var(--label);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-2);padding:6px 14px 3px}
   @media(max-width:1023px){nav.rest ul li:not(.bk){display:none}}
 
   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:99px;font-size:.98rem;font-weight:700;font-family:var(--sans);transition:all .2s var(--ease);cursor:pointer;border:none}
@@ -123,11 +135,17 @@
   .btn.ghost:hover{border-color:var(--gold);color:var(--gold-l)}
   .btn.terra{background:var(--terra);color:#fff}
   .btn.terra:hover{background:var(--terra-l);transform:translateY(-2px)}
+  /* WhatsApp action button — unmistakable green */
+  .btn.wa{background:#25d366;color:#fff}
+  .btn.wa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,211,102,.32)}
+  .btn.wa svg{width:20px;height:20px;fill:#fff;flex:none}
+  .cater-cta .btns .btn.wa{align-self:flex-start;width:auto}
+  @media(max-width:880px){.cater-cta .btns .btn.wa{align-self:auto}}
 
   /* HERO */
   section.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:170px 0 80px;overflow:hidden}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(110deg,rgba(14,11,8,.96) 0%,rgba(14,11,8,.78) 42%,rgba(14,11,8,.45) 100%),radial-gradient(circle at 80% 30%,rgba(217,168,108,.16),transparent 55%)}
-  .hero-grid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero-grid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
   @media(max-width:1023px){.hero-grid{grid-template-columns:1fr}}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
   .eyebrow::before{content:"";width:30px;height:2px;background:var(--gold)}
@@ -137,8 +155,8 @@
   .stats{display:flex;gap:34px;flex-wrap:wrap}
   .stat .n{font-family:var(--display);font-size:2.1rem;font-weight:800;color:var(--gold);line-height:1}
   .stat .l{font-family:var(--label);font-size:.72rem;color:var(--silver-2);margin-top:6px;letter-spacing:.08em;text-transform:uppercase}
-  .hero-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:24px;backdrop-filter:blur(8px);box-shadow:0 28px 64px rgba(0,0,0,.5);max-width:380px;margin-left:auto}
-  @media(max-width:1023px){.hero-card{margin:0 auto}}
+  .hero-card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:24px;backdrop-filter:blur(8px);box-shadow:0 28px 64px rgba(0,0,0,.5);max-width:380px;margin-right:auto;order:-1}
+  @media(max-width:1023px){.hero-card{margin:0 auto;order:0}}
   .hc-t{font-family:var(--display);font-weight:700;font-size:1.25rem;margin:0 0 4px}
   .hc-s{font-family:var(--label);font-size:.68rem;color:var(--silver-2);letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
   .hc-row{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--line-2);font-size:.92rem}
@@ -480,9 +498,21 @@
   <div class="row">
     <a href="#top" class="brand" aria-label="Shamiat Restaurant — home"><img src="images/shamiat-logo.png" alt="Shamiat Restaurant" class="brand-img"></a>
     <ul>
-      <li><a href="#signature">Signature</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#grill">Grills</a></li>
+      <li class="has-drop">
+        <a href="#menu" tabindex="0">Menu <span class="caret" aria-hidden="true">▾</span></a>
+        <ul class="drop">
+          <li><a href="#menu">Full menu</a></li>
+          <li><a href="#signature">Signature plates</a></li>
+          <li><a href="#grill">Grills</a></li>
+          <li class="drop-sep" aria-hidden="true"></li>
+          <li class="drop-lbl" aria-hidden="true">Jump to</li>
+          <li><a href="#mezze">Mezze &amp; salads</a></li>
+          <li><a href="#seafood">Seafood</a></li>
+          <li><a href="#fakhara">Fakhara (clay pot)</a></li>
+          <li><a href="#sweets">Sweets</a></li>
+          <li><a href="#drinks">Drinks</a></li>
+        </ul>
+      </li>
       <li><a href="#catering">Catering</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#social">Social</a></li>
@@ -642,7 +672,7 @@
     </div>
 
     <!-- SALADS & APPETIZERS -->
-    <div class="menu-cat reveal">
+    <div class="menu-cat reveal" id="mezze">
       <div class="cat-bar"><h3>Salads &amp; Appetizers</h3><span class="ar">مقبلات</span><span class="ct">Served with fresh bread</span></div>
       <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><span class="badge">Best</span><img src="images/dish-fattoush.jpg" alt="Fattoush" loading="lazy"></div><div class="dish-b"><h4>Fattoush <span class="price">29<span class="cur"> AED</span></span></h4><p>Lettuce, tomato, sumac, pomegranate molasses, fried bread.</p></div></article>
@@ -679,7 +709,7 @@
     <!-- CHARCOAL GRILL -->
     <div class="menu-cat reveal" id="grill">
       <div class="cat-bar"><h3>From the Charcoal Grill</h3><span class="ar">على الفحم</span><span class="ct">Mangal · made to order</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-lamb-chops.jpg" alt="Lamb Chops" loading="lazy"></div><div class="dish-b"><h4>Lamb Chops <span class="price">99<span class="cur"> AED</span></span></h4><p>5 pieces char-grilled lamb chops, fries.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/1000316061.jpg" alt="Lamb Shank" loading="lazy"></div><div class="dish-b"><h4>Lamb Shank <span class="price">90<span class="cur"> AED</span></span></h4><p>Slow-cooked shank, mashed potato, vegetables.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge">Sharing</span><img src="images/dish-mixed-grill.jpg" alt="Mixed Grill" loading="lazy"></div><div class="dish-b"><h4>Mixed Grill <span class="price">83<span class="cur"> AED</span></span></h4><p>Kabab, meat &amp; chicken skewers, fries, garlic.</p></div></article>
@@ -692,9 +722,9 @@
     </div>
 
     <!-- SEAFOOD -->
-    <div class="menu-cat reveal">
+    <div class="menu-cat reveal" id="seafood">
       <div class="cat-bar"><h3>Seafood</h3><span class="ar">مأكولات بحرية</span><span class="ct">Lemon &amp; garlic sauce</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/1000316064.jpg" alt="Grilled fish" loading="lazy"></div><div class="dish-b"><h4>Grilled Seafood <span class="price">85<span class="cur"> AED</span></span></h4><p>Catch of the day, lemon &amp; garlic sauce, rice.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-grilled-salmon.jpg" alt="Grilled Salmon" loading="lazy"></div><div class="dish-b"><h4>Grilled Salmon <span class="price">95<span class="cur"> AED</span></span></h4><p>Salmon fillet, herbs &amp; olive oil.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-grilled-shrimp.jpg" alt="Grilled Shrimp" loading="lazy"></div><div class="dish-b"><h4>Grilled Shrimp <span class="price">109<span class="cur"> AED</span></span></h4><p>7 pieces, fries, butter-lemon sauce.</p></div></article>
@@ -704,7 +734,7 @@
     <!-- SHAMIAT SPECIALS -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Shamiat Specials</h3><span class="ar">أطباق شامية</span><span class="ct">Slow-cooked &amp; traditional</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/1000316078.jpg" alt="Musakhan chicken" loading="lazy"></div><div class="dish-b"><h4>Musakhan Chicken <span class="price">56<span class="cur"> AED</span></span></h4><p>Sumac, caramelised onion, almonds, pomegranate, taboon bread.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-oze-lamb.jpg" alt="Oze Lamb Special" loading="lazy"></div><div class="dish-b"><h4>Oze Lamb Special <span class="price">75<span class="cur"> AED</span></span></h4><p>Rice with minced meat, green peas, lamb neck; yogurt on the side.</p></div></article>
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-special-shamiat.jpg" alt="Special Shamiat" loading="lazy"></div><div class="dish-b"><h4>Special Shamiat <span class="price">95<span class="cur"> AED</span></span></h4><p>Lamb with mixed vegetables in house sauce.</p></div></article>
@@ -720,9 +750,9 @@
     </div>
 
     <!-- FAKHARA FROM THE OVEN -->
-    <div class="menu-cat reveal">
+    <div class="menu-cat reveal" id="fakhara">
       <div class="cat-bar"><h3>Fakhara from the Oven</h3><span class="ar">فخارة</span><span class="ct">Baked in clay pots</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/1000316070.jpg" alt="Eggs with kawarma" loading="lazy"></div><div class="dish-b"><h4>Eggs with Kawarma <span class="price">45<span class="cur"> AED</span></span></h4><p>Baked eggs with cured lamb awarma.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-eggs-sujok.jpg" alt="Eggs with Sujok" loading="lazy"></div><div class="dish-b"><h4>Eggs with Sujok <span class="price">45<span class="cur"> AED</span></span></h4><p>Baked eggs with spiced sujok.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-potato-meat.jpg" alt="Potato &amp; Meat" loading="lazy"></div><div class="dish-b"><h4>Potato &amp; Meat <span class="price">38<span class="cur"> AED</span></span></h4><p>Oven-baked potato with minced meat.</p></div></article>
@@ -739,7 +769,7 @@
     <!-- MANAKEESH & BAKERY -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Manakeesh &amp; Bakery</h3><span class="ar">مناقيش</span><span class="ct">Baked fresh to order</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-manakish-zaatar.jpg" alt="Zaatar" loading="lazy"></div><div class="dish-b"><h4>Zaatar <span class="price">12<span class="cur"> AED</span></span></h4><p>Wild thyme, tomato, onion.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-cheese-thyme.jpg" alt="Cheese with Thyme" loading="lazy"></div><div class="dish-b"><h4>Cheese with Thyme <span class="price">21<span class="cur"> AED</span></span></h4><p>Thyme &amp; mozzarella.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-labneh-manakish.jpg" alt="Labneh" loading="lazy"></div><div class="dish-b"><h4>Labneh <span class="price">19<span class="cur"> AED</span></span></h4><p>Labneh, tomato, cucumber, olives, mint.</p></div></article>
@@ -756,7 +786,7 @@
     <!-- BURGERS & SANDWICHES -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Burgers &amp; Sandwiches</h3><span class="ar">سندويشات</span><span class="ct">Wrapped &amp; rolled</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-burger.jpg" alt="Burger (Beef / Chicken)" loading="lazy"></div><div class="dish-b"><h4>Burger (Beef / Chicken) <span class="price">33 / 36<span class="cur"> AED</span></span></h4><p>Lettuce, pickles, tomato, cheddar, cocktail sauce.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-chicken-shawarma.jpg" alt="Chicken Shawarma" loading="lazy"></div><div class="dish-b"><h4>Chicken Shawarma <span class="price">30 / 22<span class="cur"> AED</span></span></h4><p>Chicken, garlic sauce, pickles.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-tawook-sandwich.jpg" alt="Tawook Sandwich" loading="lazy"></div><div class="dish-b"><h4>Tawook Sandwich <span class="price">25<span class="cur"> AED</span></span></h4><p>Chicken cubes, pickles, fries, garlic.</p></div></article>
@@ -772,7 +802,7 @@
     <!-- PIZZA -->
     <div class="menu-cat reveal">
       <div class="cat-bar"><h3>Pizza</h3><span class="ar">بيتزا</span><span class="ct">Wood-fired</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-pizza-margarita.jpg" alt="Margarita" loading="lazy"></div><div class="dish-b"><h4>Margarita <span class="price">35<span class="cur"> AED</span></span></h4><p>Tomato, mozzarella, basil.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-pizza-pepperoni.jpg" alt="Pepperoni" loading="lazy"></div><div class="dish-b"><h4>Pepperoni <span class="price">45<span class="cur"> AED</span></span></h4><p>Beef pepperoni &amp; cheese.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-pizza-bbq-chicken.jpg" alt="BBQ Chicken" loading="lazy"></div><div class="dish-b"><h4>BBQ Chicken <span class="price">39<span class="cur"> AED</span></span></h4><p>BBQ chicken &amp; mozzarella.</p></div></article>
@@ -782,9 +812,9 @@
     </div>
 
     <!-- DESSERTS -->
-    <div class="menu-cat reveal">
+    <div class="menu-cat reveal" id="sweets">
       <div class="cat-bar"><h3>Sweets</h3><span class="ar">حلويات</span><span class="ct">Made in-house</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><span class="badge stars" title="Signature dish">★★★★★</span><img src="images/dish-kunafa.jpg" alt="Shamiat Kunafa" loading="lazy"></div><div class="dish-b"><h4>Shamiat Kunafa <span class="price">25<span class="cur"> AED</span></span></h4><p>Cheese pastry, syrup &amp; pistachio.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-kunafa-icecream.jpg" alt="Kunafa Ice Cream" loading="lazy"></div><div class="dish-b"><h4>Kunafa Ice Cream <span class="price">25<span class="cur"> AED</span></span></h4><p>Warm kunafa with ice cream.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-lazaqiat.jpg" alt="Lazaqiat" loading="lazy"></div><div class="dish-b"><h4>Lazaqiat <span class="price">26<span class="cur"> AED</span></span></h4><p>Sweet fried dough in syrup.</p></div></article>
@@ -794,9 +824,9 @@
     </div>
 
     <!-- DRINKS -->
-    <div class="menu-cat reveal">
+    <div class="menu-cat reveal" id="drinks">
       <div class="cat-bar"><h3>Drinks</h3><span class="ar">مشروبات</span><span class="ct">Fresh juices, cold &amp; hot</span></div>
-      <div class="dish-grid">
+      <div class="dish-grid fl-grid">
         <article class="dish ph"><div class="plate"><img src="images/dish-cocktail-juice.jpg" alt="My Cocktail" loading="lazy"></div><div class="dish-b"><h4>My Cocktail <span class="price">29<span class="cur"> AED</span></span></h4><p>House mixed-fruit cocktail.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-avocado-juice.jpg" alt="Avocado" loading="lazy"></div><div class="dish-b"><h4>Avocado <span class="price">29<span class="cur"> AED</span></span></h4><p>Fresh avocado shake.</p></div></article>
         <article class="dish ph"><div class="plate"><img src="images/dish-pomegranate-juice.jpg" alt="Pomegranate" loading="lazy"></div><div class="dish-b"><h4>Pomegranate <span class="price">29<span class="cur"> AED</span></span></h4><p>Fresh pomegranate juice.</p></div></article>
@@ -852,7 +882,7 @@
         </div>
       </div>
       <div class="btns">
-        <a class="btn primary" href="https://wa.me/971547816266?text=Hi%20Shamiat%2C%20I%27d%20like%20a%20catering%20quote.%20Date%3A%20___%20Guests%3A%20___%20Occasion%3A%20___" target="_blank" rel="noopener">💬 WhatsApp catering team</a>
+        <a class="btn wa" href="https://wa.me/971547816266?text=Hi%20Shamiat%2C%20I%27d%20like%20a%20catering%20quote.%20Date%3A%20___%20Guests%3A%20___%20Occasion%3A%20___" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A10 10 0 0 0 3.2 17.3L2 22l4.8-1.2A10 10 0 1 0 19.1 4.9zM12 20.1a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.7.8-2.8-.2-.3A8 8 0 1 1 12 20.1zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>WhatsApp catering team</a>
         <a class="btn ghost" href="tel:+971547816266">📞 Call +971 54 781 6266</a>
         <a class="btn terra" href="mailto:shamiat.restaurant.ae@gmail.com?subject=Catering%20Enquiry">✉️ Email an enquiry</a>
       </div>
@@ -1006,7 +1036,7 @@
             </label>
             <label class="full">Guests<input name="guests" type="number" min="1" max="50" required inputmode="numeric" placeholder="Number of guests"></label>
           </div>
-          <button class="btn primary bk-submit" type="submit">💬 Send booking on WhatsApp</button>
+          <button class="btn wa bk-submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A10 10 0 0 0 3.2 17.3L2 22l4.8-1.2A10 10 0 1 0 19.1 4.9zM12 20.1a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.7.8-2.8-.2-.3A8 8 0 1 1 12 20.1zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Send booking on WhatsApp</button>
         </form>
         <script>
           (function(){
@@ -1047,6 +1077,135 @@
               window.open('https://wa.me/'+PH+'?text='+encodeURIComponent(msg),'_blank','noopener');
             });
           })();
+        </script>
+      </div>
+      <style>
+        .ob-card{grid-column:1/-1}
+        .ob-card .ob-sub{font-size:.88rem;color:var(--silver-2);line-height:1.6;margin:6px 0 16px;max-width:660px}
+        .ob-search{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:#fff;font-family:inherit;font-size:.96rem;margin-bottom:14px}
+        .ob-search:focus{outline:none;border-color:var(--gold)}
+        .ob-search::placeholder{color:var(--silver-2);opacity:.8}
+        .ob-list{max-height:430px;overflow-y:auto;border:1px solid var(--line-2);border-radius:12px;padding:6px}
+        .ob-cat-h{font-family:var(--label);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);padding:13px 10px 6px;position:sticky;top:0;background:var(--panel);z-index:1}
+        .ob-row{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:9px;transition:background .15s}
+        .ob-row:hover{background:rgba(255,255,255,.03)}
+        .ob-row.on{background:rgba(217,168,108,.09)}
+        .ob-row input[type=checkbox]{width:18px;height:18px;accent-color:#25d366;flex:none;cursor:pointer}
+        .ob-row .ob-nm{flex:1;font-size:.9rem;color:#fff;cursor:pointer}
+        .ob-row .ob-pr{font-size:.84rem;color:var(--silver);white-space:nowrap}
+        .ob-qty{display:none;align-items:center;gap:8px}
+        .ob-row.on .ob-qty{display:flex}
+        .ob-qty button{width:27px;height:27px;border-radius:7px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;font-size:1.05rem;line-height:1;cursor:pointer;padding:0}
+        .ob-qty button:hover{border-color:var(--gold);color:var(--gold-l)}
+        .ob-qty span{min-width:20px;text-align:center;font-size:.92rem;color:#fff;font-weight:600}
+        .ob-none{padding:22px 10px;color:var(--silver-2);font-size:.9rem;text-align:center}
+        .ob-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px}
+        .ob-total{display:flex;flex-direction:column;min-width:120px}
+        .ob-total span{font-size:.72rem;color:var(--silver-2);letter-spacing:.04em}
+        .ob-total b{font-family:var(--display);font-size:1.5rem;color:var(--gold);line-height:1.1}
+        .ob-name{flex:1;min-width:170px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:12px 13px;color:#fff;font-family:inherit;font-size:.92rem}
+        .ob-name:focus{outline:none;border-color:var(--gold)}
+        .ob-name::placeholder{color:var(--silver-2);opacity:.8}
+        #obSend:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+      </style>
+      <div class="vcard reveal ob-card">
+        <h3>Build your order</h3>
+        <p class="ob-sub">Tick what you'd like, set the quantity, and send your order straight to us on WhatsApp — we'll confirm availability &amp; the final total. Prices in AED.</p>
+        <input type="search" id="obSearch" class="ob-search" placeholder="Search dishes — e.g. shawarma, hummus, lamb shank…" autocomplete="off" aria-label="Search the menu">
+        <div class="ob-list" id="obList"></div>
+        <div class="ob-bar">
+          <div class="ob-total"><span id="obCount">No items yet</span><b id="obTotal">0 AED</b></div>
+          <input type="text" id="obName" class="ob-name" placeholder="Your name (optional)">
+          <button class="btn wa" id="obSend" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A10 10 0 0 0 3.2 17.3L2 22l4.8-1.2A10 10 0 1 0 19.1 4.9zM12 20.1a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.7.8-2.8-.2-.3A8 8 0 1 1 12 20.1zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.6 3.6 0 0 0 1.6.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Send order on WhatsApp</button>
+        </div>
+        <script>
+        (function(){
+          var list=document.getElementById('obList'); if(!list)return;
+          var PH='971547816266';
+          var search=document.getElementById('obSearch'),send=document.getElementById('obSend'),
+              elCount=document.getElementById('obCount'),elTotal=document.getElementById('obTotal'),
+              elName=document.getElementById('obName');
+          // build dish data from the live menu (same source the assistant uses)
+          var items=[],qty={},id=0;
+          document.querySelectorAll('.menu-cat').forEach(function(cat){
+            var h3=cat.querySelector('.cat-bar h3'),cn=h3?h3.textContent.trim():'Menu';
+            cat.querySelectorAll('.dish').forEach(function(d){
+              var h=d.querySelector('.dish-b h4');if(!h)return;
+              var name=(h.childNodes[0]&&h.childNodes[0].textContent||'').trim();
+              var pr=h.querySelector('.price'),priceTxt=pr?pr.textContent.replace(/\s+/g,' ').trim():'';
+              if(!name)return;
+              var nums=(priceTxt.match(/\d+/g)||[]).map(Number);
+              items.push({id:++id,name:name,cat:cn,priceTxt:priceTxt,price:nums.length?nums[0]:0,dual:nums.length>1});
+            });
+          });
+          // render grouped by category
+          var cats=[];items.forEach(function(m){if(cats.indexOf(m.cat)<0)cats.push(m.cat);});
+          var html='';
+          cats.forEach(function(cn){
+            html+='<div class="ob-cat" data-cat="'+cn.replace(/"/g,'')+'"><div class="ob-cat-h">'+cn+'</div>';
+            items.filter(function(m){return m.cat===cn;}).forEach(function(m){
+              html+='<label class="ob-row" data-id="'+m.id+'" data-name="'+m.name.toLowerCase().replace(/"/g,'')+'">'
+                +'<input type="checkbox" data-id="'+m.id+'">'
+                +'<span class="ob-nm">'+m.name+'</span>'
+                +'<span class="ob-pr">'+(m.dual?'from ':'')+(m.priceTxt||'—')+'</span>'
+                +'<span class="ob-qty"><button type="button" data-act="minus" data-id="'+m.id+'" aria-label="Decrease">−</button><span data-q="'+m.id+'">1</span><button type="button" data-act="plus" data-id="'+m.id+'" aria-label="Increase">+</button></span>'
+                +'</label>';
+            });
+            html+='</div>';
+          });
+          html+='<div class="ob-none" id="obNone" style="display:none">No dishes match that search.</div>';
+          list.innerHTML=html;
+          var byId={};items.forEach(function(m){byId[m.id]=m;});
+          function refresh(){
+            var n=0,total=0,anyDual=false;
+            Object.keys(qty).forEach(function(k){var q=qty[k];if(q>0){n+=q;total+=byId[k].price*q;if(byId[k].dual)anyDual=true;}});
+            elCount.textContent=n?(n+(n===1?' item':' items')):'No items yet';
+            elTotal.textContent=(anyDual?'≈ ':'')+total+' AED';
+            send.disabled=n===0;
+          }
+          list.addEventListener('change',function(e){
+            var cb=e.target;if(cb.type!=='checkbox')return;
+            var i=cb.getAttribute('data-id'),row=cb.closest('.ob-row');
+            if(cb.checked){qty[i]=qty[i]||1;row.classList.add('on');}
+            else{delete qty[i];row.classList.remove('on');}
+            var qd=row.querySelector('[data-q="'+i+'"]');if(qd)qd.textContent=qty[i]||1;
+            refresh();
+          });
+          list.addEventListener('click',function(e){
+            var b=e.target.closest('button[data-act]');if(!b)return;
+            e.preventDefault();
+            var i=b.getAttribute('data-id');if(!qty[i])return;
+            qty[i]+=b.getAttribute('data-act')==='plus'?1:-1;
+            if(qty[i]<1)qty[i]=1;
+            var qd=list.querySelector('[data-q="'+i+'"]');if(qd)qd.textContent=qty[i];
+            refresh();
+          });
+          search.addEventListener('input',function(){
+            var q=search.value.trim().toLowerCase(),none=document.getElementById('obNone'),shown=0;
+            list.querySelectorAll('.ob-cat').forEach(function(c){
+              var vis=0;
+              c.querySelectorAll('.ob-row').forEach(function(r){
+                var match=!q||r.getAttribute('data-name').indexOf(q)>=0||c.getAttribute('data-cat').toLowerCase().indexOf(q)>=0;
+                r.style.display=match?'':'none';if(match){vis++;shown++;}
+              });
+              c.style.display=vis?'':'none';
+            });
+            if(none)none.style.display=shown?'none':'block';
+          });
+          send.addEventListener('click',function(){
+            var lines=[];
+            items.forEach(function(m){var q=qty[m.id];if(q>0)lines.push(q+'× '+m.name+(m.priceTxt?' — '+(m.dual?'from ':'')+m.priceTxt:''));});
+            if(!lines.length)return;
+            var n=0,total=0,anyDual=false;
+            Object.keys(qty).forEach(function(k){var q=qty[k];if(q>0){n+=q;total+=byId[k].price*q;if(byId[k].dual)anyDual=true;}});
+            var nm=(elName.value||'').trim();
+            var msg='Hi Shamiat, I’d like to place an order:\n\n'+lines.join('\n')
+              +'\n\nTotal: '+(anyDual?'≈ ':'')+total+' AED'
+              +(nm?'\nName: '+nm:'')
+              +'\n\nPlease confirm availability & the final total. 🙏';
+            window.open('https://wa.me/'+PH+'?text='+encodeURIComponent(msg),'_blank','noopener');
+          });
+        })();
         </script>
       </div>
     </div>
