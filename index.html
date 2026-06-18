@@ -53,7 +53,13 @@
     {"@type":"Place","name":"Trade Centre First, Dubai"},
     {"@type":"Place","name":"Dubai World Trade Centre (DWTC)"},
     {"@type":"Place","name":"DIFC, Dubai"},
-    {"@type":"Place","name":"Downtown Dubai"}
+    {"@type":"Place","name":"Downtown Dubai"},
+    {"@type":"Place","name":"Sheraton Grand Hotel, Dubai"},
+    {"@type":"Place","name":"Fairmont Dubai"},
+    {"@type":"Place","name":"voco Dubai"},
+    {"@type":"Place","name":"Novotel & Ibis World Trade Centre"},
+    {"@type":"Place","name":"Jumeirah Emirates Towers"},
+    {"@type":"Place","name":"Museum of the Future"}
   ],
   "openingHoursSpecification":[
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"12:00","closes":"05:00"}
@@ -482,7 +488,10 @@
     {"@type":"Question","name":"What kind of food does Shamiat serve?","acceptedAnswer":{"@type":"Answer","text":"Shamiat is an authentic Syrian and Levantine (Shami) kitchen. The menu covers cold and hot mezze, charcoal grills and kebabs, Damascene mains such as mansaf, fattah, shish barak and kibbeh, fresh manakish, and Arabic sweets like knafeh. All food is halal."}},
     {"@type":"Question","name":"Are you open now? What are the opening hours?","acceptedAnswer":{"@type":"Answer","text":"Shamiat is open every day from 12:00 PM until 5:00 AM — a late-night home for Shami food in Dubai, ideal after work, after a night out, or for a long family dinner."}},
     {"@type":"Question","name":"Do you deliver Syrian food near Trade Centre and Sheikh Zayed Road?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can order Shamiat for delivery across the Trade Centre and Sheikh Zayed Road area on Talabat, noon, Keeta, Smiles, Deliveroo and Careem, or call +971 54 781 6266 for takeaway."}},
-    {"@type":"Question","name":"Do you take reservations or cater events?","acceptedAnswer":{"@type":"Answer","text":"Yes. To reserve a table, message Shamiat on WhatsApp or call +971 54 781 6266. Shamiat also caters weddings, majlis gatherings and corporate events across Dubai."}}
+    {"@type":"Question","name":"Do you take reservations or cater events?","acceptedAnswer":{"@type":"Answer","text":"Yes. To reserve a table, message Shamiat on WhatsApp or call +971 54 781 6266. Shamiat also caters weddings, majlis gatherings and corporate events across Dubai."}},
+    {"@type":"Question","name":"Which restaurants are near Sheraton Grand Hotel and the Sheikh Zayed Road hotels?","acceptedAnswer":{"@type":"Answer","text":"Shamiat Restaurant at Duja Tower is within a short walk or a few minutes' drive of the main Sheikh Zayed Road hotels, including Sheraton Grand Hotel Dubai, Fairmont Dubai, voco Dubai, Novotel and Ibis World Trade Centre, Four Points by Sheraton Sheikh Zayed Road, Towers Rotana and Crowne Plaza. It serves authentic Syrian and Levantine food and is open daily until 5:00 AM."}},
+    {"@type":"Question","name":"Can you deliver food to my hotel room on Sheikh Zayed Road?","acceptedAnswer":{"@type":"Answer","text":"Yes. Shamiat delivers across the Sheikh Zayed Road and Trade Centre hotel area through Talabat, noon, Keeta, Smiles, Deliveroo and Careem, or you can call +971 54 781 6266. Late-night delivery is available until 5:00 AM — give the app or our team your hotel name and room number."}},
+    {"@type":"Question","name":"Where can hotel guests near Dubai World Trade Centre eat authentic Arabic food late at night?","acceptedAnswer":{"@type":"Answer","text":"Hotel guests near Dubai World Trade Centre can eat at Shamiat Restaurant, directly across Sheikh Zayed Road at Duja Tower. It serves Syrian, Lebanese and Levantine mezze, charcoal grills and manakish every day from 12:00 PM until 5:00 AM, with dine-in, takeaway and delivery."}}
   ]
 }
 </script>
@@ -1212,6 +1221,48 @@
   </div>
 </section>
 
+<!-- Hotel guests & concierges on SZR — capture "restaurant near [hotel]" intent + room-delivery play -->
+<style>
+  #hotels .hchips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:940px;margin:0 auto 30px}
+  #hotels .hchip{font-family:var(--label);font-size:.82rem;color:var(--silver);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:99px;padding:9px 16px;transition:border-color .2s,color .2s}
+  #hotels .hchip:hover{border-color:var(--gold);color:var(--gold-l)}
+  #hotels .hchip b{color:#fff;font-weight:600}
+  #hotels .h-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  #hotels .h-note{font-family:var(--label);font-size:.74rem;color:var(--silver-2);text-align:center;margin-top:18px;letter-spacing:.02em;max-width:760px;margin-left:auto;margin-right:auto}
+</style>
+<section class="block" id="hotels" style="background:var(--ink)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">For hotel guests &amp; concierges</span>
+      <h2>Staying at a hotel on <em>Sheikh Zayed Road?</em></h2>
+      <p>Shamiat is minutes from the Trade Centre and Sheikh Zayed Road hotels — authentic Syrian food, open until 5&nbsp;AM, dine-in or delivered straight to your room. Concierges: we look after your guests.</p>
+    </div>
+    <div class="hchips reveal">
+      <span class="hchip"><b>Sheraton Grand</b> Dubai</span>
+      <span class="hchip"><b>Fairmont</b> Dubai</span>
+      <span class="hchip"><b>voco</b> Dubai</span>
+      <span class="hchip"><b>Novotel</b> WTC</span>
+      <span class="hchip"><b>Ibis</b> WTC / One Central</span>
+      <span class="hchip"><b>Four Points</b> by Sheraton SZR</span>
+      <span class="hchip"><b>Towers Rotana</b></span>
+      <span class="hchip"><b>Crowne Plaza</b> SZR</span>
+      <span class="hchip"><b>Millennium Plaza</b> Downtown</span>
+      <span class="hchip"><b>Rove</b> Trade Centre</span>
+      <span class="hchip"><b>Dusit Thani</b> Dubai</span>
+      <span class="hchip"><b>Shangri-La</b> Dubai</span>
+      <span class="hchip"><b>Conrad</b> Dubai</span>
+      <span class="hchip"><b>Jumeirah Emirates Towers</b></span>
+      <span class="hchip"><b>Sofitel</b> Downtown</span>
+      <span class="hchip"><b>The H</b> Dubai</span>
+    </div>
+    <div class="h-cta reveal">
+      <a class="btn wa" href="https://wa.me/971547816266?text=Hi%20Shamiat%2C%20I%27m%20a%20guest%20at%20a%20hotel%20on%20Sheikh%20Zayed%20Road.%20I%27d%20like%20to%20book%20a%20table%20or%20order%20to%20my%20room." target="_blank" rel="noopener">WhatsApp a table or room delivery</a>
+      <a class="btn ghost" href="tel:+971547816266">Call +971&nbsp;54&nbsp;781&nbsp;6266</a>
+    </div>
+    <p class="h-note reveal">Open daily 12&nbsp;PM – 5&nbsp;AM · Walking distance from Dubai World Trade Centre · Delivery on Talabat, noon, Keeta, Smiles, Deliveroo &amp; Careem · Group &amp; concierge bookings welcome.</p>
+  </div>
+</section>
+
 <!-- FAQ — local intent answers for "near me" + AEO/voice/AI Overviews -->
 <section class="block" id="faq" style="background:var(--bg)">
   <div class="wrap">
@@ -1244,6 +1295,18 @@
       <details class="faq-item">
         <summary>Do you take reservations or cater events?</summary>
         <div class="faq-a">Yes to both. To reserve a table, message us on <a href="https://wa.me/971547816266?text=Hi%20Shamiat%2C%20I%27d%20like%20to%20book%20a%20table." target="_blank" rel="noopener">WhatsApp</a> or call <a href="tel:+971547816266">+971&nbsp;54&nbsp;781&nbsp;6266</a>. We also cater weddings, majlis gatherings and corporate events across Dubai — <a href="#catering">see our catering packages</a>.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Which restaurants are near Sheraton Grand Hotel &amp; the Sheikh Zayed Road hotels?</summary>
+        <div class="faq-a">Shamiat is a short walk or a few minutes' drive from the main Sheikh Zayed Road hotels — including <b>Sheraton Grand Hotel Dubai, Fairmont Dubai, voco Dubai, Novotel &amp; Ibis World Trade Centre, Four Points by Sheraton SZR, Towers Rotana and Crowne Plaza</b>. We serve authentic Syrian &amp; Levantine food and stay open until 5&nbsp;AM. <a href="#hotels">See all nearby hotels →</a></div>
+      </details>
+      <details class="faq-item">
+        <summary>Can you deliver food to my hotel room on Sheikh Zayed Road?</summary>
+        <div class="faq-a">Yes. We deliver across the Sheikh Zayed Road and Trade Centre hotel area on Talabat, noon, Keeta, Smiles, Deliveroo and Careem, or call <a href="tel:+971547816266">+971&nbsp;54&nbsp;781&nbsp;6266</a>. Late-night delivery runs until 5&nbsp;AM — just add your hotel name and room number.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Where can hotel guests near the World Trade Centre eat late at night?</summary>
+        <div class="faq-a">Right here. Shamiat is directly across Sheikh Zayed Road from the World Trade Centre at Duja Tower, open every day from 12&nbsp;PM until <b>5&nbsp;AM</b> — mezze, charcoal grills and fresh manakish, dine-in or delivered to your room.</div>
       </details>
     </div>
   </div>
