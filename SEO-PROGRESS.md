@@ -1,5 +1,43 @@
 # Shamiat Restaurant — SEO/AEO/GEO Progress
 
+## Final Audit Summary (2026-06-18)
+
+**10-step SEO/AEO/GEO plan: COMPLETE.**
+
+### What was built (Steps 1–10)
+
+| Area | What was done |
+|---|---|
+| Schema | Restaurant + FAQPage (14 Q&As, 4 Arabic) + BreadcrumbList + Menu (3 sections, 12 items) + WebPage/Speakable — all 5 blocks valid JSON-LD |
+| Local discovery | areaServed expanded to 19 towers/neighbourhoods on SZR; geo (25.22885, 55.286282); sameAs to 5 platforms |
+| AEO/AI | llms.txt with nearby-buildings list and intent map; Speakable targeting #faq + hero H1 + lede |
+| Image SEO | 9 image sitemap entries; OG image → dish-mansaf.jpg + alt; descriptive alts on all dish imgs |
+| Content | #near-me section (4 neighbourhood cards); Arabic FAQ (dir=rtl, lang=ar); Arabic meta keywords |
+| E-E-A-T | Reviews row with Talabat + Google Maps links; real sameAs URLs (no fabricated links) |
+| Performance | LCP hero-poster preloaded; above-fold imgs fetchpriority=high; footer logo lazy-loaded |
+| Discovery files | robots.txt (index,follow); sitemap.xml (image sitemap, lastmod 2026-06-18); llms.txt |
+
+### Rich-result eligibility (verified 2026-06-18)
+- **Restaurant**: ✅ eligible — name, address, telephone, image, aggregateRating all present
+- **FAQPage**: ✅ eligible — 14 mainEntity Questions with acceptedAnswer
+- **BreadcrumbList**: ✅ eligible — 2 ListItems with position/name/item
+- **Menu**: ✅ valid — 3 MenuSections × 12 MenuItems with price/priceCurrency/HalalDiet
+- **WebPage/Speakable**: ✅ valid
+
+### Regression check (2026-06-18)
+- H1: exactly 1 ✅
+- Robots: `index,follow,max-image-preview:large` ✅
+- Canonical: `https://shamiatrestaurant.com/` ✅
+- OG URL: `https://shamiatrestaurant.com/` ✅
+
+### Human TODOs (cannot be done by automation — require real data)
+1. **Google Search Console**: Replace `REPLACE_WITH_YOUR_GSC_VERIFICATION_TOKEN` in `<head>` with your real GSC verification token.
+2. **Google Business Profile URL**: Once you have your GBP URL (`https://g.page/r/YOUR_PLACE_ID`), add it to `sameAs` in the Restaurant schema and update the "Google reviews" link in the visit section (marked with a comment in the HTML).
+3. **OG image check**: Verify `dish-mansaf.jpg` is at least 1200×630px and landscape-oriented for correct social share previews.
+4. **Review schema**: Add real attributed `Review` entries to the Restaurant schema once you have verified review text from Google or Talabat. Do not fabricate.
+
+---
+
 ## Plan
 
 - [x] **Step 1** — Verify/strengthen LocalBusiness schema (geo, hours, areaServed towers, hasMenu, acceptsReservations, payment) + FAQPage + visible FAQ + llms.txt local facts + sitemap freshness.
@@ -32,4 +70,5 @@
 - [x] **Step 9** — Arabic bilingual near-me keywords + short Arabic FAQ (مطعم سوري قريب مني، مطعم عربي شارع الشيخ زايد).
   _2026-06-17: Extended `<meta name="keywords">` with 6 Arabic near-me terms (مطعم سوري قريب مني, مطعم عربي قريب مني, مطعم حلال دبي, مشاوي قريب مني دبي, مطعم شامي دبي, مطعم لبناني شارع الشيخ زايد). Added 4 Arabic Q&As to FAQPage schema (14 questions total). Added visible Arabic FAQ subsection (dir="rtl" lang="ar") with 4 items: مطعم سوري قريب مني، مطعم عربي SZR، مشاوي DWTC، أوقات العمل. Sitemap lastmod → 2026-06-17. All 5 JSON-LD blocks valid; 1 × h1; robots/canonical/OG intact._
 
-- [ ] **Step 10** — Full re-audit: validate all JSON-LD, confirm rich-result eligibility (Restaurant, FAQ, Breadcrumb), fix regressions, write a final summary atop SEO-PROGRESS.md.
+- [x] **Step 10** — Full re-audit: validate all JSON-LD, confirm rich-result eligibility (Restaurant, FAQ, Breadcrumb), fix regressions, write a final summary atop SEO-PROGRESS.md.
+  _2026-06-18: All 5 JSON-LD blocks valid. Rich-result eligible: Restaurant ✅, FAQPage (14 Q) ✅, BreadcrumbList ✅, Menu ✅, WebPage/Speakable ✅. Fixed 1 regression: &amp; HTML entities in Restaurant makesOffer → replaced with plain &. Updated sitemap lastmod → 2026-06-18. Final summary written atop this file. 4 human TODOs logged._
