@@ -132,7 +132,7 @@
   nav.rest .drop a:hover{background:rgba(217,168,108,.12);color:var(--gold-l)}
   nav.rest .drop .drop-sep{height:1px;background:var(--line);margin:6px 8px}
   nav.rest .drop .drop-lbl{font-family:var(--label);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-2);padding:6px 14px 3px}
-  @media(max-width:1023px){nav.rest ul li:not(.bk){display:none}}
+  /* mobile nav is handled by the slide-in drawer — see #navMenu rules below */
 
   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:99px;font-size:.98rem;font-weight:700;font-family:var(--sans);transition:all .2s var(--ease);cursor:pointer;border:none}
   .btn.primary{background:var(--gold);color:var(--ink)}
@@ -507,7 +507,8 @@
 <nav class="rest">
   <div class="row">
     <a href="#top" class="brand" aria-label="Shamiat Restaurant — home"><img src="images/shamiat-logo.png" alt="Shamiat Restaurant" class="brand-img"></a>
-    <ul>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <ul id="navMenu">
       <li class="has-drop">
         <a href="#menu" tabindex="0">Menu <span class="caret" aria-hidden="true">▾</span></a>
         <ul class="drop">
@@ -532,6 +533,39 @@
     </ul>
   </div>
 </nav>
+
+<!-- ===== MOBILE FIXES: hamburger drawer nav, declutter floating rail, stop right-edge clipping ===== -->
+<style>
+  .nav-burger{display:none}
+  @media(max-width:1023px){
+    /* show the burger, turn the link list into a slide-in drawer */
+    .nav-burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;flex:none;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.05);cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .nav-burger span{display:block;height:2px;width:100%;background:var(--gold-l);border-radius:2px;transition:transform .25s var(--ease),opacity .2s}
+    .nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    #navMenu{position:fixed;top:0;right:0;height:100dvh;width:min(84vw,340px);transform:translateX(106%);transition:transform .32s var(--ease);flex-direction:column;align-items:stretch;gap:0;background:rgba(14,11,8,.98);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-left:1px solid var(--line);box-shadow:-22px 0 64px rgba(0,0,0,.6);padding:84px 20px 28px;overflow-y:auto;z-index:55}
+    #navMenu.open{transform:none}
+    #navMenu>li{display:block;width:100%}
+    #navMenu>li>a{display:block;padding:15px 12px;font-size:1.06rem;color:#fff;border-bottom:1px solid var(--line-2);letter-spacing:0}
+    #navMenu .has-drop>a .caret{display:none}
+    #navMenu .drop{display:none}                 /* flatten: "Menu" jumps straight to #menu */
+    #navMenu .bk{order:-1;margin-bottom:14px}
+    #navMenu .bk .book{display:block;text-align:center;background:var(--gold);color:var(--ink);border-radius:12px;padding:15px;font-size:1.06rem;border-bottom:none}
+
+    .nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:opacity .3s;z-index:54}
+    .nav-backdrop.open{opacity:1;visibility:visible}
+
+    /* the 5-icon floating rail overlapped body text — keep only one-tap WhatsApp on mobile */
+    .social-rail a:not(.sr-wa){display:none}
+  }
+  /* stop section sub-labels from being clipped off the right edge on small screens */
+  @media(max-width:600px){
+    .cat-bar{flex-wrap:wrap}
+    .cat-bar .ct{display:none}
+  }
+</style>
 
 <main>
 <!-- HERO -->
@@ -1594,6 +1628,27 @@
   form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();if(!v)return;input.value='';send(v);});
   document.querySelectorAll('.cbot-chip').forEach(function(c){c.addEventListener('click',function(){send(c.getAttribute('data-q')||c.textContent.trim());});});
 })();
+</script>
+<script>
+  /* mobile drawer nav */
+  (function(){
+    var b=document.getElementById('navBurger'), m=document.getElementById('navMenu');
+    if(!b||!m) return;
+    var bd=document.createElement('div'); bd.className='nav-backdrop'; document.body.appendChild(bd);
+    function set(open){
+      m.classList.toggle('open',open);
+      bd.classList.toggle('open',open);
+      b.setAttribute('aria-expanded',open?'true':'false');
+      b.setAttribute('aria-label',open?'Close menu':'Open menu');
+      document.body.style.overflow=open?'hidden':'';
+    }
+    b.addEventListener('click',function(){ set(!m.classList.contains('open')); });
+    bd.addEventListener('click',function(){ set(false); });
+    m.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+    /* if resized up to desktop, reset state */
+    addEventListener('resize',function(){ if(innerWidth>1023) set(false); });
+  })();
 </script>
 </body>
 </html>
