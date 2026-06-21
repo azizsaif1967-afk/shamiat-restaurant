@@ -1439,7 +1439,7 @@
   // reveal on scroll
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.12});
+  },{threshold:0,rootMargin:'0px 0px -5% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
   // Signature Plates — cinematic auto-pan + drag
@@ -1479,6 +1479,17 @@
     <div class="sm-modal-frame" id="smFrame"></div>
   </div>
 </div>
+<script>
+  /* Failsafe: never leave reveal-on-scroll content hidden. If another script
+     errors or IntersectionObserver doesn't fire on a device (e.g. a tall
+     section on a short mobile viewport never reaching the visibility
+     threshold), force every .reveal element visible a few seconds after load
+     so the page can't render half-blank. */
+  setTimeout(function(){
+    var els=document.querySelectorAll('.reveal:not(.in)');
+    for(var i=0;i<els.length;i++){els[i].classList.add('in');}
+  },2800);
+</script>
 <script>
 (function(){
   var modal=document.getElementById('smModal'),frame=document.getElementById('smFrame');
