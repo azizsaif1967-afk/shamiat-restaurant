@@ -101,6 +101,10 @@ Shamiat Restaurant — Duja Tower, Sheikh Zayed Road, Dubai
 | 2026-06-18 | Fairmont Dubai | TBC | WhatsApp + email | drafted (week 1 focus) | Send drafts, place concierge cards |
 | 2026-06-20 | voco Dubai | TBC | WhatsApp + email | drafted (week 2 focus) | Send drafts this week |
 | 2026-06-20 | Crowne Plaza SZR | TBC | WhatsApp + email | drafted (week 2 focus) | Send drafts this week |
+| 2026-06-21 | Novotel WTC | TBC | WhatsApp + email | drafted | Send this week |
+| 2026-06-21 | Ibis WTC / One Central | TBC | WhatsApp + email | drafted | Send this week |
+| 2026-06-22 | Four Points by Sheraton SZR | TBC | WhatsApp + email | drafted | Send this week |
+| 2026-06-22 | Towers Rotana | TBC | WhatsApp + email | drafted | Send this week |
 
 > Add a row per touch. Statuses: drafted → sent → replied → cards placed →
 > referring. Review in the Friday routine (Step 5) and rotate focus hotels.
