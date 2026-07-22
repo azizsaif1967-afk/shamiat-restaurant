@@ -771,36 +771,28 @@
       </div>
     </div>
 
-    <!-- MENU TOOLS: live search + jump-to-category chips (kills the long boring scroll) -->
+    <!-- MENU ACCORDION: only headers show; a tap reveals that section's dishes (no long scroll) -->
     <style>
-      .menu-tools{max-width:820px;margin:0 auto 6px}
-      .menu-search{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:#fff;font-family:inherit;font-size:1rem}
-      .menu-search:focus{outline:none;border-color:var(--gold)}
-      .menu-search::placeholder{color:var(--silver-2);opacity:.85}
-      .cat-nav{position:sticky;top:60px;z-index:40;display:flex;gap:9px;overflow-x:auto;padding:12px 2px;margin:10px 0 30px;background:rgba(14,11,8,.94);backdrop-filter:blur(8px);scrollbar-width:none}
-      .cat-nav::-webkit-scrollbar{display:none}
-      .cat-nav a{white-space:nowrap;font-family:var(--label);font-size:.8rem;font-weight:500;letter-spacing:.02em;color:var(--silver);border:1px solid var(--line);background:rgba(255,255,255,.03);padding:8px 15px;border-radius:99px;transition:background .18s,color .18s,border-color .18s}
-      .cat-nav a:hover,.cat-nav a.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-      .menu-noresults{display:none;text-align:center;color:var(--silver-2);padding:26px 10px 4px;font-size:.98rem}
-      .menu-cat.hide,.dish.hide{display:none}
+      /* Accordion: category bar becomes a toggle; dishes hidden until opened (progressive enhancement — full menu shows if JS is off) */
+      .js-acc .menu-cat{margin-bottom:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);overflow:hidden}
+      .js-acc .cat-bar{margin:0;padding:20px 22px;border-bottom:0;cursor:pointer;width:100%;background:none;text-align:left;font:inherit;color:inherit;transition:background .2s}
+      .js-acc .cat-bar:hover{background:rgba(255,255,255,.03)}
+      .js-acc .cat-bar .ct{display:none}
+      .js-acc .cat-bar .cat-count{font-family:var(--label);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver-2);margin-left:auto;white-space:nowrap}
+      .js-acc .cat-bar .cat-chev{margin-left:14px;color:var(--gold);transition:transform .28s var(--ease);flex:none;font-size:1.1rem;line-height:1}
+      .js-acc .menu-cat.open .cat-bar{border-bottom:1px solid var(--line)}
+      .js-acc .menu-cat.open .cat-chev{transform:rotate(180deg)}
+      .js-acc .cat-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+      .js-acc .menu-cat.open .cat-body{max-height:5200px}
+      .js-acc .cat-body .dish-grid{padding:22px}
+      @media(prefers-reduced-motion:reduce){.js-acc .cat-body{transition:none}}
+      .menu-fullcta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin:0 auto 30px;text-align:center;color:var(--silver)}
+      .menu-fullcta .mf-hint{font-size:.92rem;color:var(--silver-2)}
     </style>
-    <div class="menu-tools reveal">
-      <input type="search" id="menuSearch" class="menu-search" placeholder="Search the menu — e.g. shawarma, hummus, lamb, juice…" autocomplete="off" aria-label="Search the menu">
+    <div class="menu-fullcta reveal">
+      <span class="mf-hint">Tap a section to see its dishes.</span>
+      <a class="btn primary" href="menu/">🔍 Open the full searchable menu →</a>
     </div>
-    <nav class="cat-nav" id="catNav" aria-label="Jump to a menu category">
-      <a href="#mezze">Salads &amp; Appetizers</a>
-      <a href="#soups">Soups &amp; Fattah</a>
-      <a href="#grill">Charcoal Grill</a>
-      <a href="#seafood">Seafood</a>
-      <a href="#specials">Shamiat Specials</a>
-      <a href="#fakhara">Fakhara</a>
-      <a href="#manakeesh">Manakeesh &amp; Bakery</a>
-      <a href="#burgers">Burgers &amp; Sandwiches</a>
-      <a href="#pizza">Pizza</a>
-      <a href="#sweets">Sweets</a>
-      <a href="#drinks">Drinks</a>
-    </nav>
-    <div class="menu-noresults" id="menuNoResults">No dishes match that search. <a href="#menu" id="menuClear">Clear the search →</a></div>
 
     <!-- SALADS & APPETIZERS -->
     <div class="menu-cat reveal" id="mezze">
@@ -980,35 +972,30 @@
   </div>
   <script>
   (function(){
-    var s=document.getElementById('menuSearch'); if(!s)return;
-    var cats=[].slice.call(document.querySelectorAll('#menu .menu-cat'));
-    var none=document.getElementById('menuNoResults');
-    var clear=document.getElementById('menuClear');
-    function run(){
-      var q=s.value.trim().toLowerCase(), any=false;
-      cats.forEach(function(cat){
-        var vis=0;
-        [].slice.call(cat.querySelectorAll('.dish')).forEach(function(d){
-          var m=!q||d.textContent.toLowerCase().indexOf(q)>-1;
-          d.classList.toggle('hide',!m); if(m)vis++;
-        });
-        cat.classList.toggle('hide',vis===0); if(vis)any=true;
-      });
-      none.style.display=(q&&!any)?'block':'none';
-    }
-    s.addEventListener('input',run);
-    if(clear)clear.addEventListener('click',function(e){e.preventDefault();s.value='';run();s.focus();});
-    // scroll-spy: highlight the chip for the category in view
-    var links=[].slice.call(document.querySelectorAll('#catNav a')), map={};
-    links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(es){
-        es.forEach(function(e){
-          if(e.isIntersecting){ links.forEach(function(a){a.classList.remove('active');}); var a=map[e.target.id]; if(a)a.classList.add('active'); }
-        });
-      },{rootMargin:'-45% 0px -50% 0px'});
-      cats.forEach(function(c){if(c.id)io.observe(c);});
-    }
+    var menu=document.getElementById('menu'); if(!menu)return;
+    var cats=[].slice.call(menu.querySelectorAll('.menu-cat'));
+    if(!cats.length)return;
+    menu.classList.add('js-acc'); // enable accordion styling only when JS runs
+    cats.forEach(function(cat,i){
+      var bar=cat.querySelector('.cat-bar'); if(!bar)return;
+      var grid=cat.querySelector('.dish-grid');
+      var n=cat.querySelectorAll('.dish').length;
+      // wrap the dish grid in a collapsible body
+      var body=document.createElement('div'); body.className='cat-body';
+      if(grid){ grid.parentNode.insertBefore(body,grid); body.appendChild(grid); }
+      // dish count + chevron in the header
+      var meta=document.createElement('span'); meta.className='cat-count'; meta.textContent=n+' dish'+(n===1?'':'es');
+      bar.appendChild(meta);
+      var chev=document.createElement('span'); chev.className='cat-chev'; chev.setAttribute('aria-hidden','true'); chev.textContent='▾';
+      bar.appendChild(chev);
+      // make header a real toggle button for a11y
+      bar.setAttribute('role','button'); bar.setAttribute('tabindex','0');
+      bar.setAttribute('aria-expanded', i===0?'true':'false');
+      if(i===0)cat.classList.add('open'); // first section open as a hint
+      function toggle(){ var open=cat.classList.toggle('open'); bar.setAttribute('aria-expanded',open?'true':'false'); }
+      bar.addEventListener('click',toggle);
+      bar.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+    });
   })();
   </script>
 </section>
