@@ -28,6 +28,11 @@
    },
    "mainEntity": {
     "@id": "https://shamiatrestaurant.com/menu/#menu"
+   },
+   "dateModified": "2026-11-19",
+   "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".mhero .menu-answer", "#faq .faq-a"]
    }
   },
   {
@@ -43,6 +48,48 @@
     "name": "Shamiat Restaurant",
     "url": "https://shamiatrestaurant.com/"
    }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shamiatrestaurant.com/menu/#faq",
+   "url": "https://shamiatrestaurant.com/menu/#faq",
+   "isPartOf": {
+    "@id": "https://shamiatrestaurant.com/menu/#webpage"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is on the Shamiat menu?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Syrian and Levantine food: mezze and salads such as hummus, mutabal, muhammara and fattoush; soups and fattah; charcoal grills including shish tawook, kabab, lamb chops and the sharing Mixed Grill; seafood; slow-cooked Shamiat specials; fakhara baked in clay pots; manakeesh and bakery; burgers and sandwiches; pizza; house-made sweets; and fresh juices and hot drinks. Prices are in AED and the kitchen is 100% halal."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What are the signature dishes at Shamiat?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Guests come for Fattoush and Tabbouleh from the mezze table, Jordanian Mansaf and Mansaf Mlahea from the Shamiat specials, and the Mixed Grill from the charcoal mangal, with the Family Mix Mezze platter for sharing. Fakhara clay-pot dishes and fresh manakeesh round out the Shami table."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I order the menu for delivery near Trade Centre, DIFC or Sheikh Zayed Road?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Shamiat is on the ground floor of Duja Tower, Sheikh Zayed Road, opposite Dubai World Trade Centre and a few minutes from DIFC, and is open daily 12 PM to 5 AM. Order by phone or WhatsApp on +971 54 781 6266, or through talabat, noon, Deliveroo, Careem, Keeta and Smiles. See the homepage for near-me details, or our DWTC and DIFC pages."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you cater these dishes for an event?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The same mezze, grills, specials and sweets are available as catering for 10 to 1,000 guests across Dubai and Abu Dhabi, from office lunches to weddings and iftars. Start on the catering hub, or WhatsApp +971 54 781 6266 with your date, guest count and location."
+     }
+    }
+   ]
   },
   {
    "@type": "BreadcrumbList",
@@ -498,6 +545,9 @@
   .mtop-nav .mtop-call{border-color:var(--gold);color:var(--gold)}
   .mtop-nav .mtop-call:hover{background:var(--gold);color:var(--ink)}
   .mhero{padding-top:40px}
+  .menu-answer{margin:16px auto 0 !important;max-width:680px;color:var(--cream) !important;font-size:.98rem !important;border-left:3px solid var(--gold);padding:2px 0 2px 16px;text-align:left}
+  .mfaq{padding:0 0 70px}
+  .mfaq .sec-head{margin-bottom:28px}
   .msearch-wrap{position:sticky;top:74px;z-index:40;max-width:820px;margin:0 auto 30px;background:var(--bg);padding:10px 0}
   .menu-search{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:15px 17px;color:#fff;font-family:inherit;font-size:1.02rem}
   .menu-search:focus{outline:none;border-color:var(--gold)}
@@ -548,6 +598,7 @@
       <span class="kicker">Full Menu</span>
       <h2>Everything on the <em>Shami table</em></h2>
       <p>Search a dish, or tap a section to open it. Prices in AED &middot; 100% halal kitchen.</p>
+      <p class="menu-answer">The Shamiat menu is Syrian and Levantine: fresh mezze and salads, soups and fattah, charcoal grills, seafood, slow-cooked Shamiat specials, fakhara baked in clay pots, manakeesh, sandwiches, pizza, sweets and fresh juices. Signature plates are Fattoush, Tabbouleh, Jordanian Mansaf, Mansaf Mlahea and the sharing Mixed Grill. Everything is halal and served dine-in, takeaway and delivery from Duja Tower, Sheikh Zayed Road, daily 12 PM to 5 AM.</p>
     </div>
     <div class="msearch-wrap">
       <input id="mSearch" class="menu-search" type="search" placeholder="Search dishes — shawarma, hummus, lamb, juice&hellip;" autocomplete="off" aria-label="Search the menu">
@@ -730,6 +781,33 @@
       <div class="menu-noresults" id="mNone">No dishes match that search &mdash; try another word.</div>
     </div>
     <p class="menu-note">Also available as a <a href="shamiat-menu.pdf" target="_blank" rel="noopener">downloadable PDF</a>. For allergies or special requests, just ask our team.</p>
+  </div>
+</section>
+
+<section class="block mfaq" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Menu FAQ</span>
+      <h2>Quick answers about the <em>menu</em></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>What is on the Shamiat menu?</summary>
+        <div class="faq-a">Syrian and Levantine food: mezze and salads such as hummus, mutabal, muhammara and fattoush; soups and fattah; charcoal grills including shish tawook, kabab, lamb chops and the sharing Mixed Grill; seafood; slow-cooked Shamiat specials; fakhara baked in clay pots; manakeesh and bakery; burgers and sandwiches; pizza; house-made sweets; and fresh juices and hot drinks. Prices are in AED and the kitchen is 100% halal.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What are the signature dishes at Shamiat?</summary>
+        <div class="faq-a">Guests come for Fattoush and Tabbouleh from the mezze table, Jordanian Mansaf and Mansaf Mlahea from the Shamiat specials, and the Mixed Grill from the charcoal mangal, with the Family Mix Mezze platter for sharing. Fakhara clay-pot dishes and fresh manakeesh round out the Shami table.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I order the menu for delivery near Trade Centre, DIFC or Sheikh Zayed Road?</summary>
+        <div class="faq-a">Yes. Shamiat is on the ground floor of Duja Tower, Sheikh Zayed Road, opposite Dubai World Trade Centre and a few minutes from DIFC, and is open daily 12 PM to 5 AM. Order by phone or WhatsApp on +971 54 781 6266, or through talabat, noon, Deliveroo, Careem, Keeta and Smiles. See the <a href="../">homepage</a> for near-me details, or our <a href="../dwtc-exhibition-catering/">DWTC</a> and <a href="../catering/difc/">DIFC</a> pages.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can you cater these dishes for an event?</summary>
+        <div class="faq-a">Yes. The same mezze, grills, specials and sweets are available as catering for 10 to 1,000 guests across Dubai and Abu Dhabi, from office lunches to weddings and iftars. Start on the <a href="../catering/">catering hub</a>, or WhatsApp +971 54 781 6266 with your date, guest count and location.</div>
+      </details>
+    </div>
   </div>
 </section>
 
